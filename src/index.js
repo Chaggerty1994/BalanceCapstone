@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
-import { AppViews } from './Components/ApplicationViews';
+
+import { Balance } from './Components/Balance';
 
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-    <AppViews />
+    <Balance />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
