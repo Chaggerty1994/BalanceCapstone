@@ -2,8 +2,8 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { AppViews } from "../ApplicationViews";
-import { Register } from "../auth/register";
-import { Login } from "../auth/login";
+import { Register } from "../auth/Register";
+import { Login } from "../auth/Login";
 
 import { NavBar } from "../nav/NavBar";
 
@@ -18,7 +18,7 @@ export const Balance = () => {
                     return (
                         <>
                         <NavBar />
-                         
+                         <h1>Bal.Ance</h1>
                          <AppViews />
                          </>
                     );
