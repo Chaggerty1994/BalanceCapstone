@@ -1,10 +1,11 @@
 
 
+import { Button, IconButton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ToDo } from "./To-Do";
 import "./To-Do.css"
-
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export const ToDoList = () => {
 
@@ -112,20 +113,20 @@ export const ToDoList = () => {
                                 // that function is invoking the setTaskEditing function and accepting
                                 the selcted task id as an argument */}
 
-                            {taskEditing === task.id ? (<button onClick={
+                            {taskEditing === task.id ? (<Button onClick={
                                 () => {
                                     editTask(task.id)
                                 }
-                            }>Submit Edit</button>) : (<button className="button-edit"
+                            }>Submit Edit</Button>) : (<IconButton className="button-edit"
                                 onClick={() => setTaskEditing(task.id)}>
-                                edit
-                            </button>
+                                <Icon />
+                            </IconButton>
                             )}
                           
 
-                            <button onClick={() => {
+                            <IconButton onClick={() => {
                                 deleteTask(task.id)
-                            }}>Delete</button>
+                            }}><DeleteIcon /></IconButton>
 
                         </li>
 

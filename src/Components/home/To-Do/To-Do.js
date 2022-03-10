@@ -1,8 +1,11 @@
 
+import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom"
 import "./To-Do.css"
 
+// !!!! when i set a new task it is added to the list. but the text
+// in the form doesnt dissapear !!!!!!
 
 export const ToDo = ({addTask}) => {
 
@@ -31,18 +34,7 @@ export const ToDo = ({addTask}) => {
         []
     )
 
-    // const [seeNewTask, loadNewTask] = useState([])
-
-    // useEffect(
-    //     () => {
-    //         fetch("http://localhost:8088/tasks")
-    //             .then(res => res.json())
-    //             .then((taskArray) => {
-    //                 loadNewTask(taskArray)
-    //             })
-    //     },
-    //     [seeNewTask]
-    // )
+    
 
 
     const history = useHistory()
@@ -53,6 +45,7 @@ export const ToDo = ({addTask}) => {
 
         evt.preventDefault()
 
+// come back here after authentication is set up and fix the user Id situation
         const newTask = {
             userId: 1,
             // userId: parseInt(localStorage.getItem("balance_user")),
@@ -135,9 +128,9 @@ export const ToDo = ({addTask}) => {
                         }
                     </select>
                 </div>
-                    <button onClick={addNewTask} className="btn btn-primary">
+                    <Button onClick={addNewTask} className="btn btn-primary">
                         Set Task
-                    </button>
+                    </Button>
             </fieldset>
 
         </form>
