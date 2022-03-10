@@ -1,17 +1,18 @@
+
 import React from "react"
+import { Route } from "react-router-dom"
+
+import { Home } from "./Components/home/home"
 
 
 export const ApplicationViews = () => {
     return (
-        <>
-            {/* <Route exact path="/myaccount">
-
-            </Route>
-
+         <>
             <Route exact path="/home">
-
+                <Home />
             </Route>
-         */}
+        
+        
         </>
     )
 }

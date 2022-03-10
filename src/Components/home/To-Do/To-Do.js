@@ -4,12 +4,12 @@ import { useHistory } from "react-router-dom"
 import "./To-Do.css"
 
 
-export const ToDo = () => {
+export const ToDo = ({addTask}) => {
 
     // creating the initial state for a new task form entry
     const [task, newTask] = useState({
 
-        // userId: 0,
+        userId: 1,
         description: "",
         active: true,
         timerId: 0
@@ -31,7 +31,18 @@ export const ToDo = () => {
         []
     )
 
-    
+    // const [seeNewTask, loadNewTask] = useState([])
+
+    // useEffect(
+    //     () => {
+    //         fetch("http://localhost:8088/tasks")
+    //             .then(res => res.json())
+    //             .then((taskArray) => {
+    //                 loadNewTask(taskArray)
+    //             })
+    //     },
+    //     [seeNewTask]
+    // )
 
 
     const history = useHistory()
@@ -43,12 +54,14 @@ export const ToDo = () => {
         evt.preventDefault()
 
         const newTask = {
-            // userId: parseInt(task.userId),
+            userId: 1,
+            // userId: parseInt(localStorage.getItem("balance_user")),
             description: task.description,
             active: task.active,
             timerId: parseInt(task.timerId)
         }
 
+        
         const fetchOption = {
             method: "POST",
             headers: {
@@ -57,11 +70,18 @@ export const ToDo = () => {
             body: JSON.stringify(newTask)
         }
 
+
         return fetch("http://localhost:8088/tasks", fetchOption)
+            .then(() => { return fetch("http://localhost:8088/tasks")})
+            .then(res => res.json())
+            .then((tasksFromAPI) => {
+                addTask(tasksFromAPI)
+            }) 
             .then(() => {
                 //  history.push will route you to whatever URL you specify
-                history.push("/tasks")
+                history.push("/home")
             })
+            
 
     }
 
