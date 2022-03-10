@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ToDo } from "./To-Do";
-
+import "./To-Do.css"
 
 
 export const ToDoList = () => {

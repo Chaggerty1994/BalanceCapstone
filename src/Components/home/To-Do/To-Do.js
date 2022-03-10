@@ -91,7 +91,7 @@ export const ToDo = ({addTask}) => {
 
         <form>
 
-            <fieldset>
+            <fieldset className="taskForm">
                 <div className="form-group">
 
                     <input
