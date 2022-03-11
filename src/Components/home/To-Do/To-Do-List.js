@@ -1,11 +1,12 @@
 
 
-import { Button, IconButton } from "@mui/material";
+import { Button, Checkbox, IconButton } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ToDo } from "./To-Do";
 import "./To-Do.css"
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 export const ToDoList = () => {
 
@@ -97,8 +98,8 @@ export const ToDoList = () => {
 
                             <fieldset>
                                 <div className="form-group">
-                                    <label htmlFor="done">Done</label>
-                                    <input
+                                   
+                                    <Checkbox
                                         onChange={
                                             (evt) => {
                                                 const copy = { ...task }
@@ -119,8 +120,7 @@ export const ToDoList = () => {
                                 }
                             }>Submit Edit</Button>) : (<IconButton className="button-edit"
                                 onClick={() => setTaskEditing(task.id)}>
-                                <Icon />
-                            </IconButton>
+                                <EditIcon />                           </IconButton>
                             )}
                           
 
