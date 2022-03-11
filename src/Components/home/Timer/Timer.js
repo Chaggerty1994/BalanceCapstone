@@ -10,7 +10,9 @@ import { TimerContext } from './timerContext';
 export const Timer = () => {
     // creating a state variable to hold all of the different timers from my API
     const [timers, setTimer] = useState([])
-
+     
+    // creating a state variable to store the id of the selected timer
+    const [selectedTimer, setSelectedTimer] = useState(1)
 
     // declaring a variable to hold the context i set with useContext.
     const timerContext = useContext(TimerContext)
@@ -88,28 +90,7 @@ export const Timer = () => {
         []
     )
 
-    // // creating a use effect to map through my timers in API
-    // // then select just the aLengths and make a new array
-
-    // useEffect(
-    //     () => {
-    //         const justATime = timers.map(t => t.aLength)
-
-    //         setWorkMinutes(justATime)
-    //     },
-    //     [timers]
-    // )
-
-    // // creating a useEffect to map through my timers in API
-    // // then create a new array 
-    // useEffect(
-    //     () => {
-    //         const justBTime = timers.map(t => t.bLength)
-
-    //         setRestMinutes(justBTime)
-    //     },
-    //     [timers]
-    // )
+   
     const totalSeconds = mode === 'work' ?
     
         timerSettings.workMinutes * 60
@@ -145,7 +126,7 @@ export const Timer = () => {
                         onClick={(e) => {
                             setMode('work')
                          }}
-                        value={timerSettings.workMinutes}>
+                        value={selectedTimer.aLength}>
                         A
                     </Button>
                 </div>
@@ -171,7 +152,7 @@ export const Timer = () => {
                         onClick={(e) => {
                             setMode('work')
                          }}
-                        value={timerSettings.restMinutes}>
+                        value={selectedTimer.bLength}>
                         B
                     </Button>
                 </div>
@@ -180,13 +161,13 @@ export const Timer = () => {
             <div className='timerdropdown'>
                 <select
 
-                    // onChange={
-                    //     (evt) => {
-                    //         const copy = { ...timers }
-                    //         copy.timerId = evt.target.value
-                    //         setTimer(copy)
-                    //     }
-                    // }
+                    onChange={
+                        (evt) => {
+                            const copy = { ...timers }
+                            copy.timerId = evt.target.value
+                            setSelectedTimer(evt)
+                        }
+                    }
 
 
                     required autoFocus

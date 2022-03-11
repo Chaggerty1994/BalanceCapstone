@@ -6,3 +6,8 @@ body {
     margin-left: 60px;
     margin-right: 60px;
 }
+
+.pageheader {
+    text-align: center;
+    padding-top: 50px;
+}

@@ -6,7 +6,9 @@ import { ToDoList } from "./To-Do/To-Do-List";
 import "./home.css"
 import { TimerContext } from "./Timer/timerContext";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+
 
 
 export const Home = () => {

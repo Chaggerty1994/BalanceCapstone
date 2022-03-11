@@ -118,13 +118,13 @@ export const ToDoList = () => {
                                 () => {
                                     editTask(task.id)
                                 }
-                            }>Submit Edit</Button>) : (<IconButton className="button-edit"
+                            }>Submit Edit</Button>) : (<IconButton className="taskbutton"
                                 onClick={() => setTaskEditing(task.id)}>
                                 <EditIcon />                           </IconButton>
                             )}
                           
 
-                            <IconButton onClick={() => {
+                            <IconButton className="taskbutton" onClick={() => {
                                 deleteTask(task.id)
                             }}><DeleteIcon /></IconButton>
                               </fieldset>

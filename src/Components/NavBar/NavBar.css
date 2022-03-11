@@ -1,11 +1,13 @@
 .navbar {
     display: flex;
     flex-wrap: wrap;
-    margin-left: 500px;
+    margin-left: 260px;
+    
     
 }
 
 .navbar__item {
     flex-basis: 20%;
     list-style-type: none;
+    
 }

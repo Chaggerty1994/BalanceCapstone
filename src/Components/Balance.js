@@ -15,9 +15,9 @@ export const Balance = () => {
   
 
         <NavBar />
-        <h1 className="pageheader">Balance</h1>
+       
         <ApplicationViews />
-
+        <h1 className="pageheader">Bal_ance</h1>  
    
     
     
