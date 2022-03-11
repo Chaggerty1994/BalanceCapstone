@@ -1,9 +1,5 @@
-* {
-    display: flex;
-    flex-direction: column;
-}
-
 
 .listandtimer {
 display: flex;
+flex-direction: row;
 }

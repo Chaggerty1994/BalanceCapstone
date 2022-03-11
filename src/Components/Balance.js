@@ -5,7 +5,7 @@ import { ApplicationViews } from "../ApplicationViews";
 
 import { NavBar } from "./NavBar/NavBar";
 
-
+import "./Balance.css"
 
 
 export const Balance = () => {
@@ -15,7 +15,7 @@ export const Balance = () => {
   
 
         <NavBar />
-        <h1>Balance</h1>
+        <h1 className="pageheader">Balance</h1>
         <ApplicationViews />
 
    

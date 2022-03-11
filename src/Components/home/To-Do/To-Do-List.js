@@ -96,7 +96,7 @@ export const ToDoList = () => {
                                     value={editingTask} />) : (task.description)}
 
 
-                            <fieldset>
+                            <fieldset className="taskbuttons">
                                 <div className="form-group">
                                    
                                     <Checkbox
@@ -109,7 +109,7 @@ export const ToDoList = () => {
                                         }
                                         type="checkbox" />
                                 </div>
-                            </fieldset>
+                          
                             {/* creating a button with an onClick whose value is an arrow function.
                                 // that function is invoking the setTaskEditing function and accepting
                                 the selcted task id as an argument */}
@@ -127,7 +127,7 @@ export const ToDoList = () => {
                             <IconButton onClick={() => {
                                 deleteTask(task.id)
                             }}><DeleteIcon /></IconButton>
-
+                              </fieldset>
                         </li>
 
 

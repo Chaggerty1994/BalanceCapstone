@@ -1,11 +1,18 @@
-/* button {
-    background-color: transparent;
-    color: rbga(255,255,255,0.8);
-    border:0;
-    display: flex;
+.timerButtons {
+    display:flex;
+    flex-direction: row;
+    padding-top: 30px;
+}
+
+.timer {
+    margin-left: 80px;
+}
+
+.timerdropdown {
+    margin-left: 68px;
+    padding-top: 20px;
+    
+}
+/* .progressbar {
     
 } */
-
-
-
-
