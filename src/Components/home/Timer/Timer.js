@@ -1,25 +1,81 @@
 import { Button } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext, useRef } from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 import "./Timer.css"
+import { TimerContext } from './timerContext';
+
 
 export const Timer = () => {
-// creating a state variable to hold all of the different timers from my API
+    // creating a state variable to hold all of the different timers from my API
     const [timers, setTimer] = useState([])
-// creating a state variable for work minutes. its initial state will be 20
-    const [workMinutes, setWorkMinutes] = useState(20)
-// creating a state variable for rest minutes. its initial value will be 5
-    const [restMinutes, setRestMinutes] = useState(5)
-// creating a state variable for work mode and rest mode. 
-// there will be 3 modes. work, rest, and pause
+
+
+    // declaring a variable to hold the context i set with useContext.
+    const timerContext = useContext(TimerContext)
+
+    // creating a state variable
+    const [isPaused, setIsPaused] = useState(true)
+
+    // creating a state variable for the seconds left on the timer
+
+    const [secondsLeft, setSecondsLeft] = useState(0)
+
+    // creating a state variable for work mode and rest mode. 
+    // there will be 3 modes. work, rest, and pause
     const [mode, setMode] = useState('work')
 
 
+    const secondsleftRef = useRef(secondsLeft)
+    const isPausedRef = useRef(isPaused)
+    const modeRef = useRef(mode)
 
-    // creating a state variable
-    // const [isPaused, setIsPaused] = useState(true);
+
+    const switchMode = () => {
+        const nextMode = modeRef.current === 'work' ? 'rest' : 'work';
+        const nextSeconds = (nextMode === 'work' ? timerSettings.workMinutes : timerSettings.restMinutes) * 60
+        setMode(nextMode);
+        modeRef.current = nextMode
+        setSecondsLeft(nextSeconds);
+        secondsleftRef.current = nextSeconds
+    }
+
+// defining a function that will make the clock countdown
+    const tick = () => {
+        secondsleftRef.current = secondsleftRef.current - 1;
+        setSecondsLeft(secondsleftRef.current)
+    }
+    const startTimer = () => {
+        setSecondsLeft(timerSettings.workMinutes * 60)
+    }
+
+    const timerSettings = useContext(TimerContext)
+
+
+    useEffect(
+        () => {
+
+
+            startTimer();
+
+
+            const interval = setInterval(
+                () => {
+                    if (isPausedRef.current) {
+                        return;
+                    }
+                    if (secondsleftRef.current === 0) {
+                        return switchMode()
+                    }
+
+                    tick();
+                }, 100)
+            return () => { clearInterval(interval) }
+
+        },
+        [timerSettings]
+    )
 
     useEffect(
         () => {
@@ -32,35 +88,103 @@ export const Timer = () => {
         []
     )
 
+    // // creating a use effect to map through my timers in API
+    // // then select just the aLengths and make a new array
+
+    // useEffect(
+    //     () => {
+    //         const justATime = timers.map(t => t.aLength)
+
+    //         setWorkMinutes(justATime)
+    //     },
+    //     [timers]
+    // )
+
+    // // creating a useEffect to map through my timers in API
+    // // then create a new array 
+    // useEffect(
+    //     () => {
+    //         const justBTime = timers.map(t => t.bLength)
+
+    //         setRestMinutes(justBTime)
+    //     },
+    //     [timers]
+    // )
+    const totalSeconds = mode === 'work' ?
+    
+        timerSettings.workMinutes * 60
+        :
+        timerSettings.restMinutes * 60;
+
+    const percentage = Math.round(secondsLeft / totalSeconds * 100)
+
+    const minutes = Math.floor(secondsLeft / 60);
+    
+    let seconds = secondsLeft % 60;
+    if (seconds < 10) seconds = '0' + seconds
 
     return (
         <div style={{ width: 250, height: 250 }} className='timer'>
-            <CircularProgressbar className="progressbar" value={50} text={`50%`} />
+            <CircularProgressbar
+                className="progressbar"
+                value={percentage}
+                text={minutes + ':' + seconds}
+                styles={buildStyles({
+                    pathColor: `#3e98c7`,
+                    textColor: '#f88',
+                    trailColor: '#fd9333',
+                    // backgroundColor: '#3e98c7',
+                })}
+
+            />
             <div className="timerButtons">
+
                 <div>
-                    <Button className='A'>
+                    <Button
+                        className='A'
+                        onClick={(e) => {
+                            setMode('work')
+                         }}
+                        value={timerSettings.workMinutes}>
                         A
                     </Button>
                 </div>
+
+
+                {isPaused ?
+                    <div>
+                        <Button className='play' onClick={() => { setIsPaused(false); isPausedRef.current = false }} >
+                            Play
+                        </Button>
+                    </div>
+                    :
+                    <div>
+                        <Button className='pause' onClick={() => { setIsPaused(true); isPausedRef.current = true }}>
+                            Pause
+                        </Button>
+                    </div>}
+
+
                 <div>
-                    <Button className='play-pause'>
-                        Play/Pause
-                    </Button>
-                </div>
-                <div>
-                    <Button className='B'>
+                    <Button
+                        className='B'
+                        onClick={(e) => {
+                            setMode('work')
+                         }}
+                        value={timerSettings.restMinutes}>
                         B
                     </Button>
                 </div>
+
             </div>
             <div className='timerdropdown'>
                 <select
 
                     // onChange={
                     //     (evt) => {
-                    //         const copy = { ...task }
+                    //         const copy = { ...timers }
                     //         copy.timerId = evt.target.value
-                    //         newTask(copy)
+                    //         setTimer(copy)
                     //     }
                     // }
 

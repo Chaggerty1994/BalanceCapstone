@@ -1,7 +1,8 @@
 .navbar {
     display: flex;
-    flex-wrap: nowrap;
-    margin-left: 250px;
+    flex-wrap: wrap;
+    margin-left: 500px;
+    
 }
 
 .navbar__item {
