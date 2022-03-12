@@ -12,7 +12,7 @@ export const Timer = () => {
     const [timers, setTimer] = useState([])
 
     // creating a state variable to store the id of the selected timer
-  
+
 
     // declaring a variable to hold the context i set with useContext.
     // const timerContext = useContext(TimerContext)
@@ -87,6 +87,9 @@ export const Timer = () => {
                     if (secondsleftRef.current === 0) {
                         return switchMode()
                     }
+                    if (modeRef.current === 'work') {
+
+                    }
 
                     tick();
                 }, 10)
@@ -119,6 +122,8 @@ export const Timer = () => {
 
     const minutes = Math.floor(secondsLeft / 60);
 
+    // const workMin = modeRef.current === 'work' ? Math.floor(secondsLeft / 60) : ;
+
     let seconds = secondsLeft % 60;
 
 
@@ -129,13 +134,13 @@ export const Timer = () => {
         <div style={{ width: 250, height: 250 }} className='timer'>
             <CircularProgressbar
                 className="progressbar"
-                value={percentage}
-                text={minutes + ':' + seconds}
+                value={modeRef.current === 'work' ? percentage : percentage}
+                text={modeRef.current === 'work' ? minutes + ':' + seconds : minutes + ':' + seconds}
                 styles={buildStyles({
                     pathColor: `#3e98c7`,
                     textColor: '#f88',
                     trailColor: '#fd9333',
-                    // backgroundColor: '#3e98c7',
+                   
                 })}
 
             />
@@ -186,15 +191,15 @@ export const Timer = () => {
 
                     onChange={
                         (evt) => {
-                          
+
 
                             const matchTimer = timers.find(time => time.id === parseInt(evt.target.value))
                             setWorkMinutes(matchTimer.aLength)
                             setRestMinutes(matchTimer.bLength)
-                            
 
 
-                           
+
+
                         }
                     }
 
