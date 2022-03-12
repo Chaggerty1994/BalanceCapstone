@@ -27,6 +27,9 @@ fieldset {
 .taskForm {
 
     display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-content: center;
     margin: 5px 20px;
     border: 2px solid #ccc;
     background-color: rgb(227, 255, 100) ;

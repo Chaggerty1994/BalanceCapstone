@@ -26,7 +26,7 @@ export const Timer = () => {
 
     // creating a state variable for work mode and rest mode. 
     // there will be 3 modes. work, rest, and pause
-    const [mode, setMode] = useState('work')
+    const [mode, setMode] = useState('rest')
 
 
     const secondsleftRef = useRef(secondsLeft)
@@ -72,7 +72,7 @@ export const Timer = () => {
                     }
 
                     tick();
-                }, 100)
+                }, 1000)
             return () => { clearInterval(interval) }
 
         },
@@ -123,10 +123,10 @@ export const Timer = () => {
                 <div>
                     <Button
                         className='A'
-                        onClick={(e) => {
-                            setMode('work')
+                        onClick={() => {
+                            setMode('rest'); modeRef.current = 'rest'
                          }}
-                        value={selectedTimer.aLength}>
+                       >
                         A
                     </Button>
                 </div>
@@ -150,7 +150,7 @@ export const Timer = () => {
                     <Button
                         className='B'
                         onClick={(e) => {
-                            setMode('work')
+                            setMode('work'); modeRef.current = 'work'
                          }}
                         value={selectedTimer.bLength}>
                         B
