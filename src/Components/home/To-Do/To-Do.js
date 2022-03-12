@@ -1,5 +1,5 @@
 
-import { Button } from "@mui/material";
+import { Button, InputLabel, Select } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom"
 import "./To-Do.css"
@@ -85,6 +85,7 @@ export const ToDo = ({addTask}) => {
         <form>
 
             <fieldset className="taskForm">
+                <div className="textandtimerselect">
                 <div className="form-group">
 
                     <input
@@ -100,7 +101,7 @@ export const ToDo = ({addTask}) => {
                         className="form-control"
                         placeholder="new task"
                     />
-
+        
                     <select
 
                         onChange={
@@ -111,7 +112,7 @@ export const ToDo = ({addTask}) => {
                             }
                         }
 
-
+                        label="Pick a Timer"
                         required autoFocus
                         type="select"
                         className="form-control"
@@ -127,6 +128,7 @@ export const ToDo = ({addTask}) => {
                             )
                         }
                     </select>
+                    </div>
                 </div>
                     <Button onClick={addNewTask} className="btn btn-primary">
                         Set Task

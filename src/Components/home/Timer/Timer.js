@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Button, Select } from '@mui/material';
 import { useEffect, useState, useContext, useRef } from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -10,12 +10,12 @@ import { TimerContext } from './timerContext';
 export const Timer = () => {
     // creating a state variable to hold all of the different timers from my API
     const [timers, setTimer] = useState([])
-     
+
     // creating a state variable to store the id of the selected timer
-    const [selectedTimer, setSelectedTimer] = useState(1)
+  
 
     // declaring a variable to hold the context i set with useContext.
-    const timerContext = useContext(TimerContext)
+    // const timerContext = useContext(TimerContext)
 
     // creating a state variable
     const [isPaused, setIsPaused] = useState(true)
@@ -34,34 +34,51 @@ export const Timer = () => {
     const modeRef = useRef(mode)
 
 
+
+
     const switchMode = () => {
         const nextMode = modeRef.current === 'work' ? 'rest' : 'work';
-        const nextSeconds = (nextMode === 'work' ? timerSettings.workMinutes : timerSettings.restMinutes) * 60
+        const nextSeconds = (nextMode === 'work' ? workMinutes : restMinutes) * 60
         setMode(nextMode);
         modeRef.current = nextMode
         setSecondsLeft(nextSeconds);
         secondsleftRef.current = nextSeconds
     }
 
-// defining a function that will make the clock countdown
+    // defining a function that will make the clock countdown
     const tick = () => {
         secondsleftRef.current = secondsleftRef.current - 1;
         setSecondsLeft(secondsleftRef.current)
     }
     const startTimer = () => {
-        setSecondsLeft(timerSettings.workMinutes * 60)
+        setSecondsLeft(workMinutes * 60)
     }
 
-    const timerSettings = useContext(TimerContext)
+    // defining a variable whos value is the useContext hook 
+    // passing in 
+
+    // const timerSettings = useContext(TimerContext)
+    const { workMinutes,
+        restMinutes,
+        setWorkMinutes,
+        setRestMinutes } = useContext(TimerContext)
 
 
+    // using useEffect to invoke the start timer function. then check to see
+    // if the timer is paused or if its time to switch to the next mode.
+    // then invoke the tick function to tell the seconds to count down by 1.
+    // directly after the tick function we are telling the timer how many
+    // how many milliseconds to take for each second.
     useEffect(
         () => {
 
 
             startTimer();
 
-
+            // defining a variable whos value is a function. the functions job is 
+            //  a conditional that says if the timer is paused do nothing.
+            // and if there are zero seconds left on the current timer then switch to 
+            // the other timer. 
             const interval = setInterval(
                 () => {
                     if (isPausedRef.current) {
@@ -72,11 +89,11 @@ export const Timer = () => {
                     }
 
                     tick();
-                }, 1000)
+                }, 10)
             return () => { clearInterval(interval) }
 
         },
-        [timerSettings]
+        [workMinutes, restMinutes]
     )
 
     useEffect(
@@ -90,18 +107,22 @@ export const Timer = () => {
         []
     )
 
-   
+
     const totalSeconds = mode === 'work' ?
-    
-        timerSettings.workMinutes * 60
+
+        workMinutes * 60
         :
-        timerSettings.restMinutes * 60;
+        restMinutes * 60;
+
 
     const percentage = Math.round(secondsLeft / totalSeconds * 100)
 
     const minutes = Math.floor(secondsLeft / 60);
-    
+
     let seconds = secondsLeft % 60;
+
+
+
     if (seconds < 10) seconds = '0' + seconds
 
     return (
@@ -124,9 +145,10 @@ export const Timer = () => {
                     <Button
                         className='A'
                         onClick={() => {
-                            setMode('rest'); modeRef.current = 'rest'
-                         }}
-                       >
+                            setMode('work'); modeRef.current = 'work'
+                        }}
+                        value={modeRef.current}
+                    >
                         A
                     </Button>
                 </div>
@@ -150,9 +172,10 @@ export const Timer = () => {
                     <Button
                         className='B'
                         onClick={(e) => {
-                            setMode('work'); modeRef.current = 'work'
-                         }}
-                        value={selectedTimer.bLength}>
+                            setMode('rest'); modeRef.current = 'rest'
+                        }}
+                        value={modeRef.current}
+                    >
                         B
                     </Button>
                 </div>
@@ -163,12 +186,17 @@ export const Timer = () => {
 
                     onChange={
                         (evt) => {
-                            const copy = { ...timers }
-                            copy.timerId = evt.target.value
-                            setSelectedTimer(evt)
+                          
+
+                            const matchTimer = timers.find(time => time.id === parseInt(evt.target.value))
+                            setWorkMinutes(matchTimer.aLength)
+                            setRestMinutes(matchTimer.bLength)
+                            
+
+
+                           
                         }
                     }
-
 
                     required autoFocus
                     type="select"
@@ -190,3 +218,4 @@ export const Timer = () => {
 
     )
 }
+
