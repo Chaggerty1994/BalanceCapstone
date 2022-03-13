@@ -1,15 +1,30 @@
 
 
 import { Button, Checkbox, IconButton } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ToDo } from "./To-Do";
 import "./To-Do.css"
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Box } from "@mui/system";
-
+import TimerIcon from '@mui/icons-material/Timer';
+import { TimerContext } from "../Timer/timerContext";
 export const ToDoList = () => {
+
+    // creating a state variable to hold all of the different timers from my API
+    const [timers, setTimers] = useState([])
+
+    useEffect(
+        () => {
+            fetch("http://localhost:8088/timers")
+                .then(res => res.json())
+                .then((timerArray) => {
+                    setTimers(timerArray)
+                })
+        },
+        []
+    )
 
     const [tasks, addTask] = useState([])
 
@@ -78,7 +93,10 @@ export const ToDoList = () => {
         setTaskEditing(null)
         setEditingTask("")
     }
-
+    const { workMinutes,
+        restMinutes,
+        setWorkMinutes,
+        setRestMinutes } = useContext(TimerContext)
 
     return (
         <>
@@ -99,7 +117,7 @@ export const ToDoList = () => {
 
                             <fieldset className="taskbuttons">
                                 <div className="form-group">
-                                   
+
                                     <Checkbox
                                         onChange={
                                             (evt) => {
@@ -110,28 +128,34 @@ export const ToDoList = () => {
                                         }
                                         type="checkbox" />
                                 </div>
-                          
-                            {/* creating a button with an onClick whose value is an arrow function.
+
+                                {/* creating a button with an onClick whose value is an arrow function.
                                 // that function is invoking the setTaskEditing function and accepting
                                 the selcted task id as an argument */}
 
-                            {taskEditing === task.id ? (<Button onClick={
-                                () => {
-                                    editTask(task.id)
-                                }
-                            }>Submit Edit</Button>) : (<IconButton className="taskbutton"
-                                onClick={() => setTaskEditing(task.id)}>
-                                <EditIcon />                           </IconButton>
-                            )}
-                          
+                                {taskEditing === task.id ? (<Button onClick={
+                                    () => {
+                                        editTask(task.id)
+                                    }
+                                }>Submit Edit</Button>) : (<IconButton className="taskbutton"
+                                    onClick={() => setTaskEditing(task.id)}>
+                                    <EditIcon />                           </IconButton>
+                                )}
 
-                            <IconButton className="taskbutton" onClick={() => {
-                                deleteTask(task.id)
-                            }}><DeleteIcon /></IconButton>
-                              </fieldset>
+                                <IconButton className="taskbutton" onClick={(evt) => {
+                 
+                                    
+
+                                }}><TimerIcon /></IconButton>
+                                <IconButton className="taskbutton" onClick={() => {
+                                    deleteTask(task.id)
+                                }}><DeleteIcon /></IconButton>
+
+
+                            </fieldset>
                         </li>
 
-                       
+
                     }
                 )
             }
