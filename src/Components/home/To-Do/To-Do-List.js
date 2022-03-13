@@ -1,13 +1,13 @@
 
 
-import { Button, Checkbox, IconButton, Paper } from "@mui/material";
+import { Box, Button, Checkbox, IconButton, Paper } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ToDo } from "./To-Do";
 import "./To-Do.css"
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { Box } from "@mui/system";
+
 import TimerIcon from '@mui/icons-material/Timer';
 import { TimerContext } from "../Timer/timerContext";
 export const ToDoList = () => {
@@ -104,7 +104,7 @@ export const ToDoList = () => {
             {
                 tasks.map(
                     (task) => {
-                        return <Paper className="listItem"><li elevation={24} key={`task--${task.id}`} className="list-item">
+                        return <Paper className="listItem"><li  key={`task--${task.id}`} className="list-item">
                             {/* if the current selected task has be chosen to edit
                         then render a input text box. */}
                             {taskEditing === task.id ? (

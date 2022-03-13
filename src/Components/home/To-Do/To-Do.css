@@ -26,7 +26,10 @@ fieldset {
 
 }
 
+.listItem {
+    box-shadow: 24;
 
+}
 
 
 .textandtimerselect {
