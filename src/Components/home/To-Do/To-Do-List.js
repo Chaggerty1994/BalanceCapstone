@@ -1,6 +1,6 @@
 
 
-import { Button, Checkbox, IconButton } from "@mui/material";
+import { Button, Checkbox, IconButton, Paper } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ToDo } from "./To-Do";
@@ -104,7 +104,7 @@ export const ToDoList = () => {
             {
                 tasks.map(
                     (task) => {
-                        return <li key={`task--${task.id}`} className="list-item">
+                        return <Paper className="listItem"><li elevation={24} key={`task--${task.id}`} className="list-item">
                             {/* if the current selected task has be chosen to edit
                         then render a input text box. */}
                             {taskEditing === task.id ? (
@@ -154,6 +154,7 @@ export const ToDoList = () => {
 
                             </fieldset>
                         </li>
+                        </Paper>
 
 
                     }

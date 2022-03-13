@@ -1,5 +1,5 @@
 
-import { Button, InputLabel, Select } from "@mui/material";
+import { Button, InputLabel, Paper, Select } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom"
 import "./To-Do.css"
@@ -81,7 +81,7 @@ export const ToDo = ({addTask}) => {
 
     return (
 
-
+<Paper className="taskform">
         <form>
 
             <fieldset className="taskForm">
@@ -136,6 +136,6 @@ export const ToDo = ({addTask}) => {
             </fieldset>
 
         </form>
-
+        </Paper>
     )
 }
