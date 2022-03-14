@@ -81,7 +81,7 @@ export const ToDo = ({addTask}) => {
 
     return (
 
-<Paper className="taskform">
+<Paper className="taskform" elevation={12} style={{ margin: "0px 0px 8px 0px", border: "2px solid purple"}} >
         <form>
 
             <fieldset className="taskForm">

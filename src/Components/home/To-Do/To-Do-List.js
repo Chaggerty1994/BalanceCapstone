@@ -114,56 +114,62 @@ export const ToDoList = () => {
             {
                 tasks.map(
                     (task) => {
-                        return <Paper className="listItem"><li key={`task--${task.id}`} className="list-item">
-                            {/* if the current selected task has be chosen to edit
+                        return <Paper className="listItem"
+                            elevation={12}
+                            style={{
+                                margin: "0px 0px 8px 0px",
+                                border: "2px solid purple"
+                            }}>
+                            <li key={`task--${task.id}`} className="list-item">
+                                {/* if the current selected task has be chosen to edit
                         then render a input text box. */}
-                            {taskEditing === task.id ? (
-                                <input
-                                    type="text"
-                                    onChange=
-                                    {(evt) => setEditingTask(evt.target.value)}
-                                    value={editingTask} />) : (task.description)}
+                                {taskEditing === task.id ? (
+                                    <input
+                                        type="text"
+                                        onChange=
+                                        {(evt) => setEditingTask(evt.target.value)}
+                                        value={editingTask} />) : (task.description)}
 
 
-                            <fieldset className="taskbuttons">
-                                <div className="form-group">
+                                <fieldset className="taskbuttons">
+                                    <div className="form-group">
 
-                                    <Checkbox
-                                        onChange={
-                                            (evt) => {
-                                                const copy = { ...task }
-                                                copy.active = evt.target.checked
-                                                changeTask(copy)
+                                        <Checkbox
+                                            onChange={
+                                                (evt) => {
+                                                    const copy = { ...task }
+                                                    copy.active = evt.target.checked
+                                                    changeTask(copy)
+                                                }
                                             }
-                                        }
-                                        type="checkbox" />
-                                </div>
+                                            type="checkbox" />
+                                    </div>
 
-                                {/* creating a button with an onClick whose value is an arrow function.
+                                    {/* creating a button with an onClick whose value is an arrow function.
                                 // that function is invoking the setTaskEditing function and accepting
                                 the selcted task id as an argument */}
 
-                                {taskEditing === task.id ? (<Button onClick={
-                                    () => {
-                                        editTask(task.id)
-                                    }
-                                }>Submit Edit</Button>) : (<IconButton className="taskbutton"
-                                    onClick={() => setTaskEditing(task.id)}>
-                                    <EditIcon />                           </IconButton>
-                                )}
+                                    {taskEditing === task.id ? (<Button onClick={
+                                        () => {
+                                            editTask(task.id)
+                                        }
+                                    }>Submit Edit</Button>) : (<IconButton className="taskbutton"
+                                        onClick={() => setTaskEditing(task.id)}>
+                                        <EditIcon />                           </IconButton>
+                                    )}
 
-                                <IconButton className="taskbutton" onClick={(evt) => {
-                                    setWorkMinutes(task.timer.aLength)
-                                    setRestMinutes(task.timer.bLength)
-                                    // console.log(workMinutes, restMinutes)
-                                }}><TimerIcon /></IconButton>
-                                <IconButton className="taskbutton" onClick={() => {
-                                    deleteTask(task.id)
-                                }}><DeleteIcon /></IconButton>
+                                    <IconButton className="taskbutton" onClick={(evt) => {
+                                        setWorkMinutes(task.timer.aLength)
+                                        setRestMinutes(task.timer.bLength)
+                                        // console.log(workMinutes, restMinutes)
+                                    }}><TimerIcon /></IconButton>
+                                    <IconButton className="taskbutton" onClick={() => {
+                                        deleteTask(task.id)
+                                    }}><DeleteIcon /></IconButton>
 
 
-                            </fieldset>
-                        </li>
+                                </fieldset>
+                            </li>
                         </Paper>
 
 

@@ -1,4 +1,4 @@
-.loginheader {
+/* .loginheader {
     text-align: center;
 }
 
@@ -12,10 +12,14 @@
 }
 .signin {
     margin-left: 610px;
-}
+} */
 
 .form--login {
     display: flex;
     flex-direction: column;
-    
+    align-items: center;
+}
+
+.loginheader2 {
+    padding-top: 75px;
 }

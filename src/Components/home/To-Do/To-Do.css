@@ -23,11 +23,16 @@ fieldset {
     padding: 10px;
     max-height: 90px;
     width: 325px;
+    font-family:  sans-serif, helvetica;
+    letter-spacing: 3px;
+    font-size: 20px;
+    
 
 }
 
 .listItem {
     box-shadow: 24;
+    padding-top: 15px;
 
 }
 
