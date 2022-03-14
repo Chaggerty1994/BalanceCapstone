@@ -1,0 +1,21 @@
+.loginheader {
+    text-align: center;
+}
+
+.emailaddress {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.signin {
+    text-align: center;
+}
+.signin {
+    margin-left: 610px;
+}
+
+.form--login {
+    display: flex;
+    flex-direction: column;
+    
+}

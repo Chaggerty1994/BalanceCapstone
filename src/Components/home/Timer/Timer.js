@@ -137,7 +137,7 @@ export const Timer = () => {
             <CircularProgressbar
                 className="progressbar"
                 value={percentage}
-                text={modeRef.current === 'work' ? minutes + ':' + seconds : minutes + ':' + seconds}
+                text={minutes + ':' + seconds}
                 styles={buildStyles({
                     pathColor: `#3e98c7`,
                     textColor: '#f88',

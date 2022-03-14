@@ -18,7 +18,7 @@ export const NavBar = () => {
            
 
             <li className="navbar__item active">
-                <Link className="navbar__link" to="#"
+                <Link className="navbar__link" to="/login"
                 
                 onClick={
                     () => {
