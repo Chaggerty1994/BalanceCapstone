@@ -39,6 +39,8 @@ export const ToDoList = () => {
     // is an empty string.
     const [editingTask, setEditingTask] = useState("")
 
+
+
     const history = useHistory()
 
 
@@ -49,8 +51,10 @@ export const ToDoList = () => {
         []
     )
 
+    const taskTimer = () => { }
+
     const fetchTasks = () => {
-        fetch("http://localhost:8088/tasks")
+        fetch("http://localhost:8088/tasks?_expand=timer")
             .then(res => res.json())
             .then((tasksFromAPI) => {
                 addTask(tasksFromAPI)
@@ -93,6 +97,12 @@ export const ToDoList = () => {
         setTaskEditing(null)
         setEditingTask("")
     }
+
+    // const taskTimer = () => {
+
+    // }
+
+
     const { workMinutes,
         restMinutes,
         setWorkMinutes,
@@ -104,7 +114,7 @@ export const ToDoList = () => {
             {
                 tasks.map(
                     (task) => {
-                        return <Paper className="listItem"><li  key={`task--${task.id}`} className="list-item">
+                        return <Paper className="listItem"><li key={`task--${task.id}`} className="list-item">
                             {/* if the current selected task has be chosen to edit
                         then render a input text box. */}
                             {taskEditing === task.id ? (
@@ -143,9 +153,9 @@ export const ToDoList = () => {
                                 )}
 
                                 <IconButton className="taskbutton" onClick={(evt) => {
-                 
-                                    
-
+                                    setWorkMinutes(task.timer.aLength)
+                                    setRestMinutes(task.timer.bLength)
+                                    // console.log(workMinutes, restMinutes)
                                 }}><TimerIcon /></IconButton>
                                 <IconButton className="taskbutton" onClick={() => {
                                     deleteTask(task.id)

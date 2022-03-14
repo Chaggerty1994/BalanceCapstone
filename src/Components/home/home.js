@@ -1,12 +1,13 @@
 
 import React from "react";
 import { Timer } from "./Timer/Timer";
-import { ToDo } from "./To-Do/To-Do";
+// import { ToDo } from "./To-Do/To-Do";
 import { ToDoList } from "./To-Do/To-Do-List";
 import "./home.css"
 import { TimerContext } from "./Timer/timerContext";
 
 import { useState, useEffect } from "react";
+// import { NewTimer } from "./Timer/newTimer";
 
 
 
@@ -58,7 +59,7 @@ export const Home = () => {
             other modules */}
                 <div className="timer">
                     {/* <h3>Focus Timer</h3> */}
-                    <Timer />
+                    <Timer/>
                 </div>
         </div>
             </TimerContext.Provider>

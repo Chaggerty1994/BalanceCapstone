@@ -34,10 +34,16 @@ export const Timer = () => {
     const modeRef = useRef(mode)
 
 
+    // defining a variable whos value is the useContext hook 
+    // passing in 
+    const { workMinutes,
+        restMinutes,
+        setWorkMinutes,
+        setRestMinutes } = useContext(TimerContext)
 
 
-    const switchMode = () => {
-        const nextMode = modeRef.current === 'work' ? 'rest' : 'work';
+    const switchMode = (nextMode) => {
+        // const nextMode = modeRef.current === 'work' ? 'rest' : 'work';
         const nextSeconds = (nextMode === 'work' ? workMinutes : restMinutes) * 60
         setMode(nextMode);
         modeRef.current = nextMode
@@ -51,17 +57,10 @@ export const Timer = () => {
         setSecondsLeft(secondsleftRef.current)
     }
     const startTimer = () => {
+
         setSecondsLeft(workMinutes * 60)
     }
 
-    // defining a variable whos value is the useContext hook 
-    // passing in 
-
-    // const timerSettings = useContext(TimerContext)
-    const { workMinutes,
-        restMinutes,
-        setWorkMinutes,
-        setRestMinutes } = useContext(TimerContext)
 
 
     // using useEffect to invoke the start timer function. then check to see
@@ -85,11 +84,12 @@ export const Timer = () => {
                         return;
                     }
                     if (secondsleftRef.current === 0) {
-                        return switchMode()
+                         const nextMode = modeRef.current === 'work' ? 'rest' : 'work';
+                        return switchMode(nextMode)
                     }
-                    if (modeRef.current === 'work') {
+                    // if (modeRef.current === 'work') {
 
-                    }
+                    // }
 
                     tick();
                 }, 10)
@@ -120,21 +120,23 @@ export const Timer = () => {
 
     const percentage = Math.round(secondsLeft / totalSeconds * 100)
 
-    const minutes = Math.floor(secondsLeft / 60);
 
-    // const workMin = modeRef.current === 'work' ? Math.floor(secondsLeft / 60) : ;
+    const minutes = Math.floor(secondsLeft /  60);
+
+  
 
     let seconds = secondsLeft % 60;
 
-
-
     if (seconds < 10) seconds = '0' + seconds
+
+
+
 
     return (
         <div style={{ width: 250, height: 250 }} className='timer'>
             <CircularProgressbar
                 className="progressbar"
-                value={modeRef.current === 'work' ? percentage : percentage}
+                value={percentage}
                 text={modeRef.current === 'work' ? minutes + ':' + seconds : minutes + ':' + seconds}
                 styles={buildStyles({
                     pathColor: `#3e98c7`,
@@ -150,9 +152,9 @@ export const Timer = () => {
                     <Button
                         className='A'
                         onClick={() => {
-                            setMode('work'); modeRef.current = 'work'
+                            switchMode('work');
                         }}
-                        value={modeRef.current}
+                        // value={modeRef.current}
                     >
                         A
                     </Button>
@@ -177,9 +179,9 @@ export const Timer = () => {
                     <Button
                         className='B'
                         onClick={(e) => {
-                            setMode('rest'); modeRef.current = 'rest'
+                            switchMode('rest'); 
                         }}
-                        value={modeRef.current}
+                        // value={modeRef.current}
                     >
                         B
                     </Button>
@@ -196,7 +198,7 @@ export const Timer = () => {
                             const matchTimer = timers.find(time => time.id === parseInt(evt.target.value))
                             setWorkMinutes(matchTimer.aLength)
                             setRestMinutes(matchTimer.bLength)
-
+                           
 
 
 
