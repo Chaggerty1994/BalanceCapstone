@@ -29,23 +29,27 @@ export const Timer = () => {
     const [mode, setMode] = useState('rest')
 
 
-    const secondsleftRef = useRef(secondsLeft)
-    const isPausedRef = useRef(isPaused)
-    const modeRef = useRef(mode)
-
-
+    
+    
     // defining a variable whos value is the useContext hook 
     // passing in 
     const { workMinutes,
         restMinutes,
         setWorkMinutes,
         setRestMinutes } = useContext(TimerContext)
+        
+        
+        const secondsleftRef = useRef(secondsLeft)
+        const isPausedRef = useRef(isPaused)
+        const modeRef = useRef(mode)
 
+        // defining a function that takes nextMode as an argument. 
+        const switchMode = (nextMode) => {
+            // the function names a variable whos value is a conditional if nextMode is work mode then workMinutes. if it is rest the restMinutes witchever it is times it by 60
+            const nextSeconds = (nextMode === 'work' ? workMinutes : restMinutes) * 60
+            // then invoke the setMode function that is excepting nextMode as an argument
+            setMode(nextMode);
 
-    const switchMode = (nextMode) => {
-        // const nextMode = modeRef.current === 'work' ? 'rest' : 'work';
-        const nextSeconds = (nextMode === 'work' ? workMinutes : restMinutes) * 60
-        setMode(nextMode);
         modeRef.current = nextMode
         setSecondsLeft(nextSeconds);
         secondsleftRef.current = nextSeconds
@@ -164,13 +168,13 @@ export const Timer = () => {
                 {isPaused ?
                     <div>
                         <Button className='play' onClick={() => { setIsPaused(false); isPausedRef.current = false }} >
-                            Play
+                            Start
                         </Button>
                     </div>
                     :
                     <div>
                         <Button className='pause' onClick={() => { setIsPaused(true); isPausedRef.current = true }}>
-                            Pause
+                            Stop
                         </Button>
                     </div>}
 
