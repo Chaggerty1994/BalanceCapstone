@@ -1,6 +1,7 @@
 
 
-import { Box, Button, Checkbox, IconButton, Paper } from "@mui/material";
+import { Box, Button, Checkbox, IconButton, Menu, Paper } from "@mui/material";
+import Avatar from '@mui/material/Avatar';
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ToDo } from "./To-Do";
@@ -148,7 +149,7 @@ export const ToDoList = () => {
                                     {/* creating a button with an onClick whose value is an arrow function.
                                 // that function is invoking the setTaskEditing function and accepting
                                 the selcted task id as an argument */}
-
+                                    
                                     {taskEditing === task.id ? (<Button onClick={
                                         () => {
                                             editTask(task.id)
@@ -167,7 +168,7 @@ export const ToDoList = () => {
                                         deleteTask(task.id)
                                     }}><DeleteIcon /></IconButton>
 
-
+                                   
                                 </fieldset>
                             </li>
                         </Paper>

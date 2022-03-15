@@ -11,13 +11,9 @@ export const Timer = () => {
     // creating a state variable to hold all of the different timers from my API
     const [timers, setTimer] = useState([])
 
-    // creating a state variable to store the id of the selected timer
-
-
-    // declaring a variable to hold the context i set with useContext.
-    // const timerContext = useContext(TimerContext)
-
-    // creating a state variable
+    // creating a state variable for if the timer is paused or not
+    // the initial value with be true so that the timer waits
+    // for you to tell it to start
     const [isPaused, setIsPaused] = useState(true)
 
     // creating a state variable for the seconds left on the timer
@@ -27,32 +23,34 @@ export const Timer = () => {
     // creating a state variable for work mode and rest mode. 
     // there will be 3 modes. work, rest, and pause
     const [mode, setMode] = useState('rest')
-
-
     
-    
-    // defining a variable whos value is the useContext hook 
-    // passing in 
+    // defining the work and rest variables and setter functions
+    // with useContext to be accessed in the timer module.
     const { workMinutes,
         restMinutes,
         setWorkMinutes,
         setRestMinutes } = useContext(TimerContext)
         
-        
+
+    // you cannot access state variables inside an interval.
+    // you have to use referances.
+    
         const secondsleftRef = useRef(secondsLeft)
         const isPausedRef = useRef(isPaused)
         const modeRef = useRef(mode)
+        
 
         // defining a function that takes nextMode as an argument. 
         const switchMode = (nextMode) => {
-            // the function names a variable whos value is a conditional if nextMode is work mode then workMinutes. if it is rest the restMinutes witchever it is times it by 60
+            // the function names a variable whos value is a conditional.
+            //  if nextMode is work mode then workMinutes. if it is rest then restMinutes, witchever it is times it by 60
             const nextSeconds = (nextMode === 'work' ? workMinutes : restMinutes) * 60
             // then invoke the setMode function that is excepting nextMode as an argument
             setMode(nextMode);
 
-        modeRef.current = nextMode
-        setSecondsLeft(nextSeconds);
-        secondsleftRef.current = nextSeconds
+            modeRef.current = nextMode
+            setSecondsLeft(nextSeconds);
+            secondsleftRef.current = nextSeconds
     }
 
     // defining a function that will make the clock countdown
@@ -60,46 +58,56 @@ export const Timer = () => {
         secondsleftRef.current = secondsleftRef.current - 1;
         setSecondsLeft(secondsleftRef.current)
     }
-    const startTimer = () => {
 
+    // this function is to start the timer.
+    // it sets the secondsLeft state variable to the work minutes * 60
+    const startTimer = () => {
+        // work minutes times 60 gives you the amount of seconds
         setSecondsLeft(workMinutes * 60)
     }
-
-
-
-    // using useEffect to invoke the start timer function. then check to see
-    // if the timer is paused or if its time to switch to the next mode.
-    // then invoke the tick function to tell the seconds to count down by 1.
-    // directly after the tick function we are telling the timer how many
-    // how many milliseconds to take for each second.
+ 
+  
     useEffect(
         () => {
 
-
+            // first invoking the start timer function
             startTimer();
 
-            // defining a variable whos value is a function. the functions job is 
-            //  a conditional that says if the timer is paused do nothing.
-            // and if there are zero seconds left on the current timer then switch to 
-            // the other timer. 
+            // defining a variable whos value is the setInterval function. 
+            // setInterval is a method that calls a function or runs some code after specific intervals of time, as specified through the second parameter.
             const interval = setInterval(
                 () => {
+                    //  a conditional that says if the timer is paused do nothing.
                     if (isPausedRef.current) {
                         return;
                     }
+                    // and if there are zero seconds left on the current timer then switch to the other timer. 
                     if (secondsleftRef.current === 0) {
+                        // declaring the variable next mode. its value is a conditional. the conditional is, is the mode work?
+                        // if so then the next mode is rest.
+                        // if the mode is rest then the next mode is work
                          const nextMode = modeRef.current === 'work' ? 'rest' : 'work';
+                        //  if the secondsLeft currently is 0 then invoke
+                        // switchMode with next mode passed as an argument
                         return switchMode(nextMode)
                     }
-                    // if (modeRef.current === 'work') {
-
-                    // }
-
+                    // if its not either of those invoking the tick function to tell the timer
+                    // what incriment to count down in
                     tick();
-                }, 10)
+                    // this is the functions second perameter. 
+                    // it tells the setInterval function how often to run 
+                    // it counts in milliseconds
+                }, 10) 
+                
+                // returning a function invoking the clearInterval function
+                // it accepts the interval variable as a an argument.
+                // this will stop the interval from running if it is paused
+                // because of the isPaused conditional we put inside of interval.
             return () => { clearInterval(interval) }
 
         },
+
+
         [workMinutes, restMinutes]
     )
 
