@@ -59,28 +59,24 @@ export const MyAccount = () => {
                                 if (user.id === parseInt(currentUser)) {
                                     return  <>
                                         <div className="accountdetails">
-                                    <Paper className="user_name"
-                                    elevation={12}
-                                    style={{
-                                        margin: "25px 25px 25px 25px",
-                                        // border: "2px solid purple"
-                                    }}>
-                                  
+                                    
+                                    <h2>Name</h2>
                                     <li className="name"> 
                                     {user.name} 
-                                    <IconButton> <EditIcon /> </IconButton>
+                                    <button> Edit Name </button>
                                     </li>
-                                    </Paper>
+                                    
                                     <h2>Email</h2>
                                     <li className="email"> 
                                     {user.email} 
-                                    <IconButton className="nameIcon"> <EditIcon /> </IconButton>
+                                    <button> Edit Name </button>
                                     </li>
                                     <h2>UserName</h2>
                                     <li className="email"> 
                                     {user.userName} 
-                                    <IconButton> <EditIcon /> </IconButton>
+                                    <button> Edit Name </button>
                                     </li>
+                                  
                                     </div>
                                          </>
                                     
