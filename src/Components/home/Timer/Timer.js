@@ -34,7 +34,6 @@ export const Timer = () => {
 
     // you cannot access state variables inside an interval.
     // you have to use referances.
-    
         const secondsleftRef = useRef(secondsLeft)
         const isPausedRef = useRef(isPaused)
         const modeRef = useRef(mode)
@@ -47,9 +46,11 @@ export const Timer = () => {
             const nextSeconds = (nextMode === 'work' ? workMinutes : restMinutes) * 60
             // then invoke the setMode function that is excepting nextMode as an argument
             setMode(nextMode);
-
+            // assigning the next mode variable to modeRef.current
             modeRef.current = nextMode
+            // passing the next seconds conditional to setSecondsLeft 
             setSecondsLeft(nextSeconds);
+            // assigning nextSeconds to secondsleftRef.current
             secondsleftRef.current = nextSeconds
     }
 
@@ -74,10 +75,12 @@ export const Timer = () => {
             startTimer();
 
             // defining a variable whos value is the setInterval function. 
-            // setInterval is a method that calls a function or runs some code after specific intervals of time, as specified through the second parameter.
+            // setInterval is a method that calls a function or runs some code after specific intervals of time, as specified through the second parameter. the variable name is called the ID of the interval
             const interval = setInterval(
                 () => {
-                    //  a conditional that says if the timer is paused do nothing.
+                    //  a conditional that says if the timer is paused do nothing. isPausedRef.current needs to be used because
+                    // if you only used the original state variable it would
+                    // not refresh when the state changed
                     if (isPausedRef.current) {
                         return;
                     }
@@ -99,7 +102,7 @@ export const Timer = () => {
                     // it counts in milliseconds
                 }, 10) 
                 
-                // returning a function invoking the clearInterval function
+                // returning a function invoking the clearInterval hook
                 // it accepts the interval variable as a an argument.
                 // this will stop the interval from running if it is paused
                 // because of the isPaused conditional we put inside of interval.
@@ -111,6 +114,9 @@ export const Timer = () => {
         [workMinutes, restMinutes]
     )
 
+
+
+// fetch the timers array from the API
     useEffect(
         () => {
             fetch("http://localhost:8088/timers")
@@ -122,23 +128,26 @@ export const Timer = () => {
         []
     )
 
-
+// a conditional to decide how many total minutes for a selected time
+// it is a conditional to decide if its work or rest minutes
     const totalSeconds = mode === 'work' ?
 
         workMinutes * 60
         :
         restMinutes * 60;
 
-
+// the percentage value for the progress  bar is made by dividing
+// the seconds that are left by the total seconds of the timer
+// and then multiplying the difference by 100
     const percentage = Math.round(secondsLeft / totalSeconds * 100)
 
-
+// using math.floor so that it wont display minutes as a decimal.
     const minutes = Math.floor(secondsLeft /  60);
 
   
-
+// ????
     let seconds = secondsLeft % 60;
-
+// just a conditional so the the seconds will be two digits under 10
     if (seconds < 10) seconds = '0' + seconds
 
 
