@@ -47,8 +47,8 @@ export const ToDo = ({addTask}) => {
 
 // come back here after authentication is set up and fix the user Id situation
         const newTask = {
-            userId: 1,
-            // userId: parseInt(localStorage.getItem("balance_user")),
+            // userId: 1,
+            userId: parseInt(localStorage.getItem("balance_user")),
             description: task.description,
             active: task.active,
             timerId: parseInt(task.timerId)

@@ -52,7 +52,7 @@ export const ToDoList = () => {
         []
     )
 
-    const taskTimer = () => { }
+    
 
     const fetchTasks = () => {
         fetch("http://localhost:8088/tasks?_expand=timer")
