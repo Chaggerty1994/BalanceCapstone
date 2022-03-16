@@ -52,8 +52,6 @@ export const ToDoList = () => {
         []
     )
 
-    const taskTimer = () => { }
-
     const fetchTasks = () => {
         fetch("http://localhost:8088/tasks?_expand=timer")
             .then(res => res.json())
@@ -85,23 +83,28 @@ export const ToDoList = () => {
             .then(fetchTasks)
     }
 
-    const editTask = (id) => {
-
-        const updatedTasks = [...tasks].map(
-            (task) => {
-                if (task.id === id) {
-                    task.description = editingTask
-                }
-                return task
-            })
-        addTask(updatedTasks)
-        setTaskEditing(null)
-        setEditingTask("")
+    const editTask = (taskObject) => {
+     
+        const copy = { ...taskObject }
+        copy.description = editingTask
+        changeTask(copy)
+        
     }
+    // const editTask = (userObject) => {
 
-    // const taskTimer = () => {
-
+    //     const updatedTasks = [...tasks].map(
+    //         (task) => {
+    //             if (task.id === id) {
+    //                 task.description = editingTask
+    //             }
+    //             return task
+    //         })
+    //     addTask(updatedTasks)
+    //     setTaskEditing(null)
+    //     setEditingTask("")
     // }
+
+
 
 
     const { workMinutes,
@@ -149,10 +152,11 @@ export const ToDoList = () => {
                                     {/* creating a button with an onClick whose value is an arrow function.
                                 // that function is invoking the setTaskEditing function and accepting
                                 the selcted task id as an argument */}
-                                    
+
                                     {taskEditing === task.id ? (<Button onClick={
                                         () => {
-                                            editTask(task.id)
+                                            editTask(task)
+                                            setTaskEditing(null)
                                         }
                                     }>Submit Edit</Button>) : (<IconButton className="taskbutton"
                                         onClick={() => setTaskEditing(task.id)}>
@@ -168,7 +172,7 @@ export const ToDoList = () => {
                                         deleteTask(task.id)
                                     }}><DeleteIcon /></IconButton>
 
-                                   
+
                                 </fieldset>
                             </li>
                         </Paper>

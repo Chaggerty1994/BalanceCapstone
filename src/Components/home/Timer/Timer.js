@@ -162,8 +162,7 @@ export const Timer = () => {
                 styles={buildStyles({
                     pathColor: `#3e98c7`,
                     textColor: '#f88',
-                    trailColor: '#fd9333',
-                   
+                    trailColor: '#fd9333',  
                 })}
 
             />
@@ -219,9 +218,6 @@ export const Timer = () => {
                             const matchTimer = timers.find(time => time.id === parseInt(evt.target.value))
                             setWorkMinutes(matchTimer.aLength)
                             setRestMinutes(matchTimer.bLength)
-                           
-
-
 
                         }
                     }
