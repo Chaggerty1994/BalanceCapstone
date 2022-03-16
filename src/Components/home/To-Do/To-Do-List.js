@@ -15,7 +15,15 @@ export const ToDoList = () => {
 
     // creating a state variable to hold all of the different timers from my API
     const [timers, setTimers] = useState([])
+    const userId = localStorage.getItem("balance_user")
+    const [currentUser, setCurrentUser] = useState(0)
 
+
+    useEffect(
+        () => {
+            setCurrentUser(userId)
+        }, []
+    )
     useEffect(
         () => {
             fetch("http://localhost:8088/timers")
@@ -118,6 +126,7 @@ export const ToDoList = () => {
             {
                 tasks.map(
                     (task) => {
+                        if (task.userId === parseInt(currentUser)) {
                         return <Paper className="listItem"
                             elevation={12}
                             style={{
@@ -176,6 +185,7 @@ export const ToDoList = () => {
                                 </fieldset>
                             </li>
                         </Paper>
+                        }
 
 
                     }
