@@ -124,7 +124,7 @@ export const MyAccount = () => {
                                 if (user.id === parseInt(currentUser)) {
                                     return  <>
                                     <div className="accountdetails">
-                                    
+                                    <ul >
                                     <h2>Name</h2>
                                     <li className="name"  >  
 
@@ -169,6 +169,7 @@ export const MyAccount = () => {
 
 
                                     </li>
+                                    <hr />
                                     <h2>UserName</h2>
                                     <li className="email"> 
                                     {usersUserNameEditing === user.id ? (
@@ -188,7 +189,8 @@ export const MyAccount = () => {
                                         (<button className="namebutton" onClick={() => 
                                         setUsersUserNameEditing(user.id)}> Edit UserName </button>)}
                                     </li>
-                                  
+
+                                    </ul>
                                     </div>
                                          </>
                                     

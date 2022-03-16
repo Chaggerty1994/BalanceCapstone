@@ -98,22 +98,8 @@ export const ToDoList = () => {
         changeTask(copy)
         
     }
-    // const editTask = (userObject) => {
 
-    //     const updatedTasks = [...tasks].map(
-    //         (task) => {
-    //             if (task.id === id) {
-    //                 task.description = editingTask
-    //             }
-    //             return task
-    //         })
-    //     addTask(updatedTasks)
-    //     setTaskEditing(null)
-    //     setEditingTask("")
-    // }
-
-
-
+    
 
     const { workMinutes,
         restMinutes,
