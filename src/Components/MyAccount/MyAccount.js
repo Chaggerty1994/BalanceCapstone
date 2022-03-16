@@ -126,7 +126,7 @@ export const MyAccount = () => {
                                     <div className="accountdetails">
                                     
                                     <h2>Name</h2>
-                                    <li className="name">  
+                                    <li className="name"  >  
 
                                     {userNameEditing === user.id ? (
                                           <input type="text" 

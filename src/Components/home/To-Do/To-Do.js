@@ -71,8 +71,11 @@ export const ToDo = ({addTask}) => {
                 addTask(tasksFromAPI)
             }) 
             .then(() => {
-                //  history.push will route you to whatever URL you specify
-                history.push("/home")
+                const newTaskInput = document.querySelector("#newTaskInput") 
+                const newTaskSelect = document.querySelector("#newTaskSelect") 
+                newTaskInput.value = ""
+                newTaskSelect.value = ""
+
             })
             
 
@@ -98,6 +101,7 @@ export const ToDo = ({addTask}) => {
                         }
                         required autoFocus
                         type="text"
+                        id="newTaskInput"
                         className="form-control"
                         placeholder="new task"
                     />
@@ -114,6 +118,7 @@ export const ToDo = ({addTask}) => {
 
                         label="Pick a Timer"
                         required autoFocus
+                        id="newTaskSelect"
                         type="select"
                         className="form-control"
                         placeholder="timer"
