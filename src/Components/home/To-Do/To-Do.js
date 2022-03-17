@@ -65,7 +65,7 @@ export const ToDo = ({addTask}) => {
 
 
         return fetch("http://localhost:8088/tasks", fetchOption)
-            .then(() => { return fetch("http://localhost:8088/tasks")})
+            .then(() => { return fetch("http://localhost:8088/tasks?_expand=timer")})
             .then(res => res.json())
             .then((tasksFromAPI) => {
                 addTask(tasksFromAPI)

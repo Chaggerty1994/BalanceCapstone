@@ -11,6 +11,7 @@ import EditIcon from '@mui/icons-material/Edit';
 
 import TimerIcon from '@mui/icons-material/Timer';
 import { TimerContext } from "../Timer/timerContext";
+import { SwitchCameraRounded } from "@mui/icons-material";
 export const ToDoList = () => {
 
     // creating a state variable to hold all of the different timers from my API
@@ -99,7 +100,7 @@ export const ToDoList = () => {
         
     }
 
-    
+
 
     const { workMinutes,
         restMinutes,
@@ -138,6 +139,7 @@ export const ToDoList = () => {
                                                 (evt) => {
                                                     const copy = { ...task }
                                                     copy.active = evt.target.checked
+                                                    delete copy.timer
                                                     changeTask(copy)
                                                 }
                                             }
@@ -161,6 +163,7 @@ export const ToDoList = () => {
                                     <IconButton className="taskbutton" onClick={(evt) => {
                                         setWorkMinutes(task.timer.aLength)
                                         setRestMinutes(task.timer.bLength)
+                                        
                                         // console.log(workMinutes, restMinutes)
                                     }}><TimerIcon /></IconButton>
                                     <IconButton className="taskbutton" onClick={() => {
