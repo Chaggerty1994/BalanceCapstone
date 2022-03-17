@@ -1,4 +1,4 @@
-import { IconButton, Paper } from "@mui/material";
+import { Button, IconButton, Paper } from "@mui/material";
 import React, { useEffect, useState, getItem } from "react";
 import "./MyAccount.css"
 import EditIcon from '@mui/icons-material/Edit';
@@ -136,14 +136,14 @@ export const MyAccount = () => {
                                         <> {user.name} </>
                                     )}
                                     </li>
-                                    {userNameEditing === user.id ? (<button className="nameedit" 
+                                    {userNameEditing === user.id ? (<Button className="nameedit" 
                                     onClick={() => {
                                             editUserName(user)
                                             setUserNameEditing(null)
                                             
-                                    }}> Submit Edit</button>) : 
-                                        (<button className="namebutton" onClick={() => 
-                                        setUserNameEditing(user.id)}> Edit Name </button>)}
+                                    }}> Submit Edit</Button>) : 
+                                        (<Button className="namebutton" onClick={() => 
+                                        setUserNameEditing(user.id)}> Edit </Button>)}
                                     
                                       
                                     
@@ -158,14 +158,14 @@ export const MyAccount = () => {
                                         <> {user.email} </>
                                     )}
                                       </li>
-                                    {userEmailEditing === user.id ? (<button className="nameedit" 
+                                    {userEmailEditing === user.id ? (<Button className="namebutton" 
                                     onClick={() => {
                                             editUserEmail(user)
                                             setUserEmailEditing(null)
                                             
-                                    }}> Submit Edit</button>) : 
-                                        (<button className="namebutton" onClick={() => 
-                                        setUserEmailEditing(user.id)}> Edit Email </button>)}
+                                    }}> Submit Edit</Button>) : 
+                                        (<Button className="nameButton" onClick={() => 
+                                        setUserEmailEditing(user.id)}> Edit</Button>)}
 
 
                                   
@@ -180,14 +180,14 @@ export const MyAccount = () => {
                                         <> {user.userName} </>
                                     )}
                                         </li>
-                                    {usersUserNameEditing === user.id ? (<button className="nameedit" 
+                                    {usersUserNameEditing === user.id ? (<Button className="nameedit" 
                                     onClick={() => {
                                             editUsersUserName(user)
                                             setUsersUserNameEditing(null)
                                             
-                                    }}> Submit Edit</button>) : 
-                                        (<button className="namebutton" onClick={() => 
-                                        setUsersUserNameEditing(user.id)}> Edit UserName </button>)}
+                                    }}> Submit Edit</Button>) : 
+                                        (<Button className="namebutton" onClick={() => 
+                                        setUsersUserNameEditing(user.id)}> Edit </Button>)}
                                     
 
                                     </ul>
