@@ -36,6 +36,7 @@ export const Login = () => {
                 <button className="button--close" onClick={e => existDialog.current.close()}>Close</button>
             </dialog>
             <h1 className="loginheader">Bal_ance</h1>
+            <div className="account">
         <Paper className="accountinfo"
             elevation={12}
             style={{
@@ -67,6 +68,7 @@ export const Login = () => {
             </section>
             </section>
             </Paper>
+            </div>
         </main>
     )
 }
