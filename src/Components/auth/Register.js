@@ -1,3 +1,4 @@
+import { Button, Paper } from "@mui/material"
 import React, { useRef, useState } from "react"
 import { useHistory } from "react-router-dom"
 import "./Login.css"
@@ -40,7 +41,7 @@ export const Register = (props) => {
     }
 
     const updateUser = (evt) => {
-        const copy = {...user}
+        const copy = { ...user }
         copy[evt.target.id] = evt.target.value
         setUser(copy)
     }
@@ -52,27 +53,48 @@ export const Register = (props) => {
                 <div>Account with that email address already exists</div>
                 <button className="button--close" onClick={e => conflictDialog.current.close()}>Close</button>
             </dialog>
+            <h1 className="registerheader">Registration</h1>
+            <div className="account">
+                <Paper className="accountinfo"
+                    elevation={12}
+                    style={{
+                        margin: "0px 0px 8px 0px",
+                        border: "2px solid purple"
+                    }}>
+                    <form className="registerlogin" onSubmit={handleRegister}>
+                        <ul>
+                            <label htmlFor="name"> Full Name </label>
+                            <li className="registername">
+                                <fieldset>
 
-            <form className="form--login" onSubmit={handleRegister}>
-                <h1 className="h3 mb-3 font-weight-normal">Please Register for Bal_ance</h1>
-                <fieldset>
-                    <label htmlFor="name"> Full Name </label>
-                    <input onChange={updateUser}
-                           type="text" id="name" className="form-control"
-                           placeholder="Enter your name" required autoFocus />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="userName"> User Name </label>
-                    <input onChange={updateUser} type="text" id="userName" className="form-control" placeholder="User Name" required />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="email"> Email address </label>
-                    <input onChange={updateUser} type="email" id="email" className="form-control" placeholder="Email address" required />
-                </fieldset>
-                <fieldset>
-                    <button type="submit" > Register </button>
-                </fieldset>
-            </form>
+                                    <input onChange={updateUser}
+                                        type="text" id="name" className="form-control"
+                                        placeholder="Enter your name" required autoFocus />
+                                </fieldset>
+                            </li>
+                            <hr />
+                            <label htmlFor="userName"> User Name </label>
+                            <li className="registerusername">
+                                <fieldset>
+
+                                    <input onChange={updateUser} type="text" id="userName" className="form-control" placeholder="User Name" required />
+                                </fieldset>
+                            </li>
+                            <hr />
+                            <label htmlFor="email"> Email address </label>
+                            <li className="registeremail">
+                                <fieldset>
+
+                                    <input onChange={updateUser} type="email" id="email" className="form-control" placeholder="Email address" required />
+                                </fieldset>
+                            </li>
+                            <fieldset>
+                                <Button type="submit" > Register </Button>
+                            </fieldset>
+                        </ul>
+                    </form>
+                </Paper>
+            </div>
         </main>
     )
 }
