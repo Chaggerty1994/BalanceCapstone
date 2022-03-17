@@ -216,8 +216,10 @@ export const Timer = () => {
 
 
                             const matchTimer = timers.find(time => time.id === parseInt(evt.target.value))
+                            
                             setWorkMinutes(matchTimer.aLength)
                             setRestMinutes(matchTimer.bLength)
+                            
 
                         }
                     }

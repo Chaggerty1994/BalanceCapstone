@@ -23,27 +23,46 @@ ul {
     list-style-type: none;
 }
 .accountdetails {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 35px;
+    margin-left: 45px;
     margin-bottom: 35px;
-    /* border: 2px solid rgb(192, 191, 191); */
-    /* background-color: rgb(248, 247, 247) ; */
-    padding: 10px;
+    padding-bottom: 50px;
     max-height: 90px;
     width: 325px;
     font-family:  sans-serif, helvetica;
     letter-spacing: 3px;
-    font-size: 20px;
+    font-size: 15px;
     
     
 }
 
-.user_name {
+
+.name {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-bottom: 15px;
+    
+}
+
+.username {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+    
+}
+
+.email {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-bottom: 15px;
+    
+}
+/* .user_name {
     display: flex;
     flex-direction: column;
     width: 400px;
@@ -51,17 +70,5 @@ ul {
     font-family:  sans-serif, helvetica;
     letter-spacing: 3px;
     font-size: 20px;
-}
-
-
-
-/* .name {
-    display: flex;
-    padding-top: 25px;
-    
-}
-.nameIcon {
-    display: flex;
-    flex-direction: row;
-    margin-left: 200px
 } */
+

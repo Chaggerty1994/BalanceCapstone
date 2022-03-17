@@ -125,7 +125,7 @@ export const MyAccount = () => {
                                     return  <>
                                     <div className="accountdetails">
                                     <ul >
-                                    <h2>Name</h2>
+                                    <h2 className="nameheader">Name</h2>
                                     <li className="name"  >  
 
                                     {userNameEditing === user.id ? (
@@ -135,7 +135,7 @@ export const MyAccount = () => {
                                     ) : (
                                         <> {user.name} </>
                                     )}
-
+                                    </li>
                                     {userNameEditing === user.id ? (<button className="nameedit" 
                                     onClick={() => {
                                             editUserName(user)
@@ -146,9 +146,9 @@ export const MyAccount = () => {
                                         setUserNameEditing(user.id)}> Edit Name </button>)}
                                     
                                       
-                                    </li>
+                                    
                                     <hr />
-                                    <h2>Email</h2>
+                                    <h2 className="useremail">Email</h2>
                                     <li className="email"> 
                                     {userEmailEditing === user.id ? (
                                           <input type="text" 
@@ -157,7 +157,7 @@ export const MyAccount = () => {
                                     ) : (
                                         <> {user.email} </>
                                     )}
-
+                                      </li>
                                     {userEmailEditing === user.id ? (<button className="nameedit" 
                                     onClick={() => {
                                             editUserEmail(user)
@@ -168,7 +168,7 @@ export const MyAccount = () => {
                                         setUserEmailEditing(user.id)}> Edit Email </button>)}
 
 
-                                    </li>
+                                  
                                     <hr />
                                     <h2>UserName</h2>
                                     <li className="email"> 
@@ -179,7 +179,7 @@ export const MyAccount = () => {
                                     ) : (
                                         <> {user.userName} </>
                                     )}
-
+                                        </li>
                                     {usersUserNameEditing === user.id ? (<button className="nameedit" 
                                     onClick={() => {
                                             editUsersUserName(user)
@@ -188,7 +188,7 @@ export const MyAccount = () => {
                                     }}> Submit Edit</button>) : 
                                         (<button className="namebutton" onClick={() => 
                                         setUsersUserNameEditing(user.id)}> Edit UserName </button>)}
-                                    </li>
+                                    
 
                                     </ul>
                                     </div>
