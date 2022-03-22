@@ -1,6 +1,6 @@
 
 
-import { Box, Button, Checkbox, IconButton, Menu, MenuItem, Paper } from "@mui/material";
+import { Box, Button, Checkbox, IconButton, Menu, MenuItem, Paper, Select } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -13,6 +13,7 @@ import TimerIcon from '@mui/icons-material/Timer';
 import { TimerContext } from "../Timer/timerContext";
 import { SwitchCameraRounded } from "@mui/icons-material";
 import CheckIcon from '@mui/icons-material/Check';
+import { ListMenu } from "./listMenu";
 
 
 export const ToDoList = () => {
@@ -72,16 +73,16 @@ export const ToDoList = () => {
             })
     }
 
-    const deleteTask = (id) => {
-        fetch(`http://localhost:8088/tasks/${id}`, {
-            method: "DELETE"
-        })
-            .then(res => res.json())
-            .then(fetchTasks)
+    // const deleteTask = (id) => {
+    //     fetch(`http://localhost:8088/tasks/${id}`, {
+    //         method: "DELETE"
+    //     })
+    //         .then(res => res.json())
+    //         .then(fetchTasks)
 
 
 
-    }
+    // }
 
     const changeTask = (taskObject) => {
         fetch(`http://localhost:8088/tasks/${taskObject.id}`, {
@@ -95,13 +96,13 @@ export const ToDoList = () => {
             .then(fetchTasks)
     }
 
-    const editTask = (taskObject) => {
+    // const editTask = (taskObject) => {
 
-        const copy = { ...taskObject }
-        copy.description = editingTask
-        changeTask(copy)
+    //     const copy = { ...taskObject }
+    //     copy.description = editingTask
+    //     changeTask(copy)
 
-    }
+    // }
 
     const [anchorEl, setAnchorEl] = useState(null)
 
@@ -120,7 +121,7 @@ export const ToDoList = () => {
         setWorkMinutes,
         setRestMinutes } = useContext(TimerContext)
 
-       
+
 
     return (
         <>
@@ -139,6 +140,20 @@ export const ToDoList = () => {
                                 <li key={`task--${task.id}`} className="list-item">
                                     {/* if the current selected task has be chosen to edit
                         then render a input text box. */}
+                                    <div className="checkbox">
+
+                                        <Checkbox
+                                            onChange={
+                                                (evt) => {
+                                                    const copy = { ...task }
+                                                    copy.active = !evt.target.checked
+                                                    delete copy.timer
+                                                    changeTask(copy)
+                                                }
+                                            }
+                                            type="checkbox" />
+                                    </div>
+                                    <div className="tasktext">
                                     {taskEditing === task.id ? (
                                         <input
                                             type="text"
@@ -146,64 +161,24 @@ export const ToDoList = () => {
                                             {(evt) => setEditingTask(evt.target.value)}
                                             value={editingTask} />) : (task.description)}
 
-
+                                    </div>
                                     <fieldset className="taskbuttons">
-                                        <div className="form-group">
 
-                                            <Checkbox
-                                                onChange={
-                                                    (evt) => {
-                                                        const copy = { ...task }
-                                                        copy.active = !evt.target.checked
-                                                        delete copy.timer
-                                                        changeTask(copy)
-                                                    }
-                                                }
-                                                type="checkbox" />
+
+                                        <div>
+                                            <ListMenu className="listMenu"
+                                                editingTask={editingTask}
+                                                changeTask={changeTask}
+                                                fetchTasks={fetchTasks}
+                                                taskEditing={taskEditing}
+                                                setTaskEditing={setTaskEditing}
+                                                setWorkMinutes={setWorkMinutes}
+                                                setRestMinutes={setRestMinutes}
+                                                task={task}
+                                                setEditingTask={setEditingTask} />
                                         </div>
-                                        <IconButton
-                                            onClick={openMenu}
-                                            aria-controls={open ? 'basic-menu' : undefined}
-                                            aria-haspopup="true"
-                                            aria-expanded={open ? 'true' : undefined}
-                                            id="iconButton"
-                                        >
-                                            <MoreHorizIcon />
-                                        </IconButton>
-                                  
 
-                                            {taskEditing === task.id
 
-                                                ? (
-
-                                                    <IconButton onClick={
-                                                        () => {
-                                                            editTask(task)
-                                                            setTaskEditing(null)
-                                                        }
-                                                    }><CheckIcon /></IconButton>)
-                                                :
-                                                (<IconButton className="taskbutton" id={`${task.id}`}
-                                                    onClick={() => {
-                                                        const currentTask = task
-                                                        debugger
-                                                        setTaskEditing(currentTask.id)
-                                                        setEditingTask(currentTask.description)
-                                                    }}>
-                                                    <EditIcon /> </IconButton>
-                                                )}
-
-                                            <IconButton className="taskbutton" onClick={(evt) => {
-                                                setWorkMinutes(task.timer.aLength)
-                                                setRestMinutes(task.timer.bLength)
-
-                                                // console.log(workMinutes, restMinutes)
-                                            }}><TimerIcon /></IconButton>
-                                            <IconButton className="taskbutton" onClick={() => {
-                                                deleteTask(task.id)
-                                            }}><DeleteIcon /></IconButton>
-
-                                      
                                     </fieldset>
                                 </li>
                             </Paper>
