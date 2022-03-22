@@ -7,7 +7,7 @@ import "./To-Do.css"
 // !!!! when i set a new task it is added to the list. but the text
 // in the form doesnt dissapear !!!!!!
 
-export const ToDo = ({addTask}) => {
+export const ToDo = ({ addTask }) => {
 
     // creating the initial state for a new task form entry
     const [task, newTask] = useState({
@@ -34,7 +34,7 @@ export const ToDo = ({addTask}) => {
         []
     )
 
-    
+
 
 
     const history = useHistory()
@@ -47,14 +47,14 @@ export const ToDo = ({addTask}) => {
 
 
         const newTask = {
-           
+
             userId: parseInt(localStorage.getItem("balance_user")),
             description: task.description,
             active: task.active,
             timerId: parseInt(task.timerId)
         }
 
-        
+
         const fetchOption = {
             method: "POST",
             headers: {
@@ -65,82 +65,82 @@ export const ToDo = ({addTask}) => {
 
 
         return fetch("http://localhost:8088/tasks", fetchOption)
-            .then(() => { return fetch("http://localhost:8088/tasks?_expand=timer")})
+            .then(() => { return fetch("http://localhost:8088/tasks?_expand=timer") })
             .then(res => res.json())
             .then((tasksFromAPI) => {
                 addTask(tasksFromAPI)
-            }) 
+            })
             .then(() => {
-                const newTaskInput = document.querySelector("#newTaskInput") 
-                const newTaskSelect = document.querySelector("#newTaskSelect") 
+                const newTaskInput = document.querySelector("#newTaskInput")
+                const newTaskSelect = document.querySelector("#newTaskSelect")
                 newTaskInput.value = ""
                 newTaskSelect.value = ""
 
             })
-            
+
 
     }
 
 
     return (
 
-<Paper className="taskform" elevation={12} style={{ margin: "0px 0px 8px 0px", border: "2px solid purple"}} >
-        <form>
+        <Paper className="taskform" elevation={12} style={{ margin: "0px 0px 8px 0px", border: "2px solid purple" }} >
+            <form>
 
-            <fieldset className="taskForm">
-                <div className="textandtimerselect">
-                <div className="form-group">
+                <fieldset className="taskForm">
+                    <div className="textandtimerselect">
+                        <div className="form-group">
 
-                    <input
-                        onChange={
-                            (evt) => {
-                                const copy = { ...task }
-                                copy.description = evt.target.value
-                                newTask(copy)
-                            }
-                        }
-                        required autoFocus
-                        type="text"
-                        id="newTaskInput"
-                        className="form-control"
-                        placeholder="new task"
-                    />
-        
-                    <select
+                            <input
+                                onChange={
+                                    (evt) => {
+                                        const copy = { ...task }
+                                        copy.description = evt.target.value
+                                        newTask(copy)
+                                    }
+                                }
+                                required autoFocus
+                                type="text"
+                                id="newTaskInput"
+                                className="form-control"
+                                placeholder="new task"
+                            />
 
-                        onChange={
-                            (evt) => {
-                                const copy = { ...task }
-                                copy.timerId = evt.target.value
-                                newTask(copy)
-                            }
-                        }
+                            <select
 
-                        label="Pick a Timer"
-                        required autoFocus
-                        id="newTaskSelect"
-                        type="select"
-                        className="form-control"
-                        placeholder="timer"
-                    >
-                        <option value="0" key={`location--`}>Pick a Timer</option>
-                        {
-                            timers.map(
-                                (timerObject) => {
-                                    return <option value={timerObject.id} key={`timer--${timerObject.id}`}>{timerObject.aLength} : {timerObject.bLength}</option>
+                                onChange={
+                                    (evt) => {
+                                        const copy = { ...task }
+                                        copy.timerId = evt.target.value
+                                        newTask(copy)
+                                    }
                                 }
 
-                            )
-                        }
-                    </select>
+                                label="Pick a Timer"
+                                required autoFocus
+                                id="newTaskSelect"
+                                type="select"
+                                className="form-control"
+                                placeholder="timer"
+                            >
+                                <option value="0" key={`location--`}>Pick a Timer</option>
+                                {
+                                    timers.map(
+                                        (timerObject) => {
+                                            return <option value={timerObject.id} key={`timer--${timerObject.id}`}>{timerObject.aLength} : {timerObject.bLength}</option>
+                                        }
+
+                                    )
+                                }
+                            </select>
+                        </div>
                     </div>
-                </div>
                     <Button onClick={addNewTask} className="btn btn-primary">
                         Set Task
                     </Button>
-            </fieldset>
+                </fieldset>
 
-        </form>
+            </form>
         </Paper>
     )
 }

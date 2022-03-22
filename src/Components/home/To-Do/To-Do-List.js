@@ -120,6 +120,7 @@ export const ToDoList = () => {
         setWorkMinutes,
         setRestMinutes } = useContext(TimerContext)
 
+       
 
     return (
         <>
@@ -169,17 +170,7 @@ export const ToDoList = () => {
                                         >
                                             <MoreHorizIcon />
                                         </IconButton>
-                                        <Menu
-                                            id="listMenu"
-                                            anchorEl={anchorEl}
-                                            keepMounted
-                                            open={open}
-                                            onClose={handleClose}
-
-                                        >
-                                            {/* creating a button with an onClick whose value is an arrow function.
-                                // that function is invoking the setTaskEditing function and accepting
-                                the selcted task id as an argument */}
+                                  
 
                                             {taskEditing === task.id
 
@@ -192,7 +183,7 @@ export const ToDoList = () => {
                                                         }
                                                     }><CheckIcon /></IconButton>)
                                                 :
-                                                (<IconButton className="taskbutton"
+                                                (<IconButton className="taskbutton" id={`${task.id}`}
                                                     onClick={() => {
                                                         const currentTask = task
                                                         debugger
@@ -212,7 +203,7 @@ export const ToDoList = () => {
                                                 deleteTask(task.id)
                                             }}><DeleteIcon /></IconButton>
 
-                                        </Menu>
+                                      
                                     </fieldset>
                                 </li>
                             </Paper>

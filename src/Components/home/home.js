@@ -17,6 +17,8 @@ export const Home = () => {
     // creating a state variable for rest minutes. its initial value will be 5
     const [restMinutes, setRestMinutes] = useState(0)
 
+ 
+
     return <>
     {/* wrapping the context provider arround my todo list and my timer
     so that i can set the work minutes and rest minutes from either module */}
@@ -24,7 +26,8 @@ export const Home = () => {
                 workMinutes,
                 restMinutes,
                 setWorkMinutes,
-                setRestMinutes
+                setRestMinutes,
+              
             }}>
         <div className="listandtimer">
             <div className="list">
