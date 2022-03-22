@@ -67,8 +67,8 @@ fieldset {
 .taskbuttons {
     display: flex;
     flex-direction: row;
-    padding-left: 100px;
-    padding-right: 50px;
+    /* padding-left: 100px;
+    padding-right: 50px; */
     
   
 }
