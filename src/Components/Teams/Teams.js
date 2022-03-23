@@ -27,34 +27,50 @@ export const MyTeam = () => {
 
     const [currentUser, setCurrentUser] = useState(0)
 
-
     useEffect(
         () => {
             setCurrentUser(userId)
         }, []
     )
-        console.log(currentUser)
+
+    const [teamMembers, setTeamMembers] = useState([])
+
+    const [currentTeam, setCurrentTeam] = useState([])
+
+
+    
+    useEffect(
+        () => {
+            fetch("http://localhost:8088/teamMembers?_expand=user")
+                .then(res => res.json())
+                .then((membersArray) => {
+                    // find team member with same user id as the currentUser
+                    const teamMember = membersArray.find(
+                        member => member.userId === parseInt(currentUser))
+                    console.log(teamMember)
+                    // membersArray.filter all teammembers with team id as the user
+                    if (teamMember) {const currentTeam = membersArray.filter(
+                        member => member.teamId === teamMember.teamId)
+                   console.log(currentTeam)
+                    setTeamMembers(currentTeam)}
+                })
+        },
+        [currentUser]
+    )
+
+ 
+        
+  
+        // console.log(currentUser)
+        // console.log(teamMembers)
  
     // assigning the value of the user in localstorage to a variable
 
         const userId = localStorage.getItem("balance_user")
-        console.log(userId)
+        // console.log(userId)
 
 
-    // // declaring a state variable for the specific property of the user that you are 
-    // // editing when you click to edit button. its initial
-    // // value is set to null because it wont be anything until
-    // // you select one to edit.  
-    // const [userNameEditing, setUserNameEditing] = useState(null)
-    // const [userEmailEditing, setUserEmailEditing] = useState(null)
-    // const [usersUserNameEditing, setUsersUserNameEditing] = useState(null)
 
-    // //declaring a state variable for the new text that will be replacing
-    // // the old text . its initial value is an empty string.
-
-    // const [editingUserName, setEditingUserName] = useState("")
-    // const [editingUserEmail, setEditingUserEmail] = useState("")
-    // const [editingUsersUserName, setEditingUsersUserName] = useState('')
 
     const fetchUsers = () => {
         fetch("http://localhost:8088/users")
@@ -76,30 +92,7 @@ export const MyTeam = () => {
     //         .then(fetchUsers)
     // }
         
-    // const editUserName = (userObject) => {
-     
-    //     const copy = { ...userObject }
-    //     copy.name = editingUserName
-    //     changeUser(copy)
-        
-    // }
-
-    // const editUserEmail = (userObject) => {
-     
-    //     const copy = { ...userObject }
-    //     copy.email = editingUserEmail
-    //     changeUser(copy)
-        
-    // }
-
-
-    // const editUsersUserName = (userObject) => {
-     
-    //     const copy = { ...userObject }
-    //     copy.userName = editingUsersUserName
-    //     changeUser(copy)
-        
-    // }
+ 
 
     
 
@@ -116,17 +109,37 @@ export const MyTeam = () => {
                 border: "2px solid purple" 
                 }}>
                     {
-                        currentUser && users ?    
+                        // currentUser && users  ?    
                         users.map (
                             (user) => { 
-
-                                // need to figure out how to get the currently logged in user 
-                                // so i can compare id to the users being mapped
-                                if (user.Id === parseInt(currentUser)) {
+                                // console.log(member)
+                            
+                                if (user.id === parseInt(currentUser)) {
                                     return  <>
                                     <div className="myteam">
                                     <ul >
                                     <h2 className="teamheader">MyTeam</h2>
+                                    <li className="myteamlist">
+                                       <div className="myteamlist">
+                                            {
+                                                teamMembers.map(
+                                                    (member) => {
+                                                      
+                                                            return <>
+                                                            <ul>
+
+                                                                <li key={member.id} className="teamlist">
+                                                                   {member.user.name}
+                                                                
+                                                                </li>
+                                                            </ul>
+                                                            </>
+                                                        
+                                                    }
+                                                )
+                                            }
+                                       </div>
+                                    </li>
                                      
 
                                     
@@ -142,7 +155,7 @@ export const MyTeam = () => {
                                           
                                 }
                             }
-                        ) : "" 
+                        ) 
                     }
        
         </Paper >
