@@ -117,20 +117,24 @@ export const MyTeam = () => {
                                 if (user.id === parseInt(currentUser)) {
                                     return  <>
                                     <div className="myteam">
-                                    <ul >
                                     <h2 className="teamheader">MyTeam</h2>
+                                    <ul >
                                     <li className="myteamlist">
                                        <div className="myteamlist">
+                                           
                                             {
                                                 teamMembers.map(
-                                                    (member) => {
+                                                    (member, index ) => {
                                                       
                                                             return <>
                                                             <ul>
 
                                                                 <li key={member.id} className="teamlist">
-                                                                   {member.user.name}
-                                                                
+                                                                   {member.user.userName}
+                                                                  {
+                                                                      teamMembers.length - 1 > index ? (<hr />) : (null) 
+                                                                  }
+                                                                   
                                                                 </li>
                                                             </ul>
                                                             </>
