@@ -4,12 +4,10 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import TimerIcon from '@mui/icons-material/Timer';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { TimerContext } from "../Timer/timerContext";
-import { SwitchCameraRounded } from "@mui/icons-material";
 import CheckIcon from '@mui/icons-material/Check';
 import "./To-Do.css"
-
-
+import GroupsIcon from '@mui/icons-material/Groups';
+import PersonIcon from '@mui/icons-material/Person';
 
 
 
@@ -100,6 +98,38 @@ export const ListMenu = ({
                             <EditIcon /> </IconButton>
                         )}
                 </MenuItem>
+
+                {task.team === false ? (
+                        <MenuItem>
+                        <IconButton className="taskbutton" 
+                        onClick={
+                            (evt) => {
+                                const copy = { ...task }
+                                copy.team = true
+                                changeTask(copy)
+                            }
+                        }>
+                        <GroupsIcon />
+                        </IconButton>
+                        </MenuItem>
+                ) : (
+                    <MenuItem>
+                    <IconButton className="taskbutton" 
+                    onClick={
+                        (evt) => {
+                            const copy = { ...task }
+                            copy.team = false
+                            changeTask(copy)
+                        }
+                    }>
+                    <PersonIcon />
+                    </IconButton>
+                    </MenuItem>
+                )}
+
+            
+
+             
 
                 <MenuItem>
                     <IconButton className="taskbutton" onClick={(evt) => {

@@ -3,6 +3,7 @@ import { Button, IconButton, InputLabel, Paper, Select } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom"
 import "./To-Do.css"
+import GroupsIcon from '@mui/icons-material/Groups';
 
 import CheckIcon from '@mui/icons-material/Check';
 // !!!! when i set a new task it is added to the list. but the text
@@ -16,7 +17,9 @@ export const ToDo = ({ addTask }) => {
         userId: 1,
         description: "",
         active: true,
-        timerId: 0
+        timerId: 0,
+        team: false,
+        teamId: 0
 
     })
 
@@ -34,9 +37,35 @@ export const ToDo = ({ addTask }) => {
         },
         []
     )
+    const userId = localStorage.getItem("balance_user")
+
+    const [userTeamId, setUserTeamId] = useState(0)
 
 
+    
+    useEffect(
+        () => {
+            fetch("http://localhost:8088/teamMembers?_expand=user")
+                .then(res => res.json())
+                .then((membersArray) => {
+                    const teamMember = membersArray.find(
+                        member => member.userId === parseInt(currentUser))
+                    
+                    const userTeamId = teamMember.user.teamId
+                    console.log(userTeamId)
+                    setUserTeamId(userTeamId)
+                })
+        }
+    )
 
+    const [currentUser, setCurrentUser] = useState(0)
+
+
+    useEffect(
+        () => {
+            setCurrentUser(userId)
+        }, []
+    )
 
     const history = useHistory()
 
@@ -52,9 +81,14 @@ export const ToDo = ({ addTask }) => {
             userId: parseInt(localStorage.getItem("balance_user")),
             description: task.description,
             active: task.active,
-            timerId: parseInt(task.timerId)
+            timerId: parseInt(task.timerId),
+            team: task.team,
+            teamId: userTeamId
+            
         }
 
+
+        
 
         const fetchOption = {
             method: "POST",
@@ -138,6 +172,15 @@ export const ToDo = ({ addTask }) => {
                             </div>
                         </div>
                     </div>
+                    <IconButton onClick={
+                                    (evt) => {
+                                        const copy = { ...task }
+                                        copy.team = true
+                                        newTask(copy)
+                                    }
+                                } className="btn btn-primary">
+                        <GroupsIcon />
+                    </IconButton>
                     <IconButton onClick={addNewTask} className="btn btn-primary">
                         <CheckIcon />
                     </IconButton>

@@ -66,23 +66,14 @@ export const ToDoList = () => {
     )
 
     const fetchTasks = () => {
-        fetch("http://localhost:8088/tasks?_expand=timer")
+        fetch("http://localhost:8088/tasks?_expand=timer&_expand=user")
             .then(res => res.json())
             .then((tasksFromAPI) => {
                 addTask(tasksFromAPI)
             })
     }
 
-    // const deleteTask = (id) => {
-    //     fetch(`http://localhost:8088/tasks/${id}`, {
-    //         method: "DELETE"
-    //     })
-    //         .then(res => res.json())
-    //         .then(fetchTasks)
 
-
-
-    // }
 
     const changeTask = (taskObject) => {
         fetch(`http://localhost:8088/tasks/${taskObject.id}`, {
@@ -96,25 +87,32 @@ export const ToDoList = () => {
             .then(fetchTasks)
     }
 
-    // const editTask = (taskObject) => {
+    // const [teamMembers, setTeamMembers] = useState([])
+   
 
-    //     const copy = { ...taskObject }
-    //     copy.description = editingTask
-    //     changeTask(copy)
+    const [userTeamId, setUserTeamId] = useState(0)
 
-    // }
+
+    
+    useEffect(
+        () => {
+            fetch("http://localhost:8088/teamMembers?_expand=user")
+                .then(res => res.json())
+                .then((membersArray) => {
+                    const teamMember = membersArray.find(
+                        member => member.userId === parseInt(currentUser))
+                    
+                    const userTeamId = teamMember.user.teamId
+                    console.log(userTeamId)
+                    setUserTeamId(userTeamId)
+                })
+        }
+    )
+
 
     const [anchorEl, setAnchorEl] = useState(null)
 
-    const open = Boolean(anchorEl)
-
-    const handleClose = () => {
-        setAnchorEl(null)
-    }
-
-    const openMenu = (evt) => {
-        setAnchorEl(evt.currentTarget)
-    }
+  
 
     const { workMinutes,
         restMinutes,
@@ -129,12 +127,18 @@ export const ToDoList = () => {
             {
                 tasks.map(
                     (task) => {
-                        if (task.userId === parseInt(currentUser)) {
-                            return <Paper className="listItem"
+                        if ((task.team === true && task.teamId === userTeamId) 
+                             || task.userId === parseInt(currentUser)) {
+                            
+                            return( 
+                            
+                            <Paper
+
+                                className="listItem"
                                 elevation={12}
                                 style={{
                                     margin: "0px 0px 8px 0px",
-                                    border: "2px solid purple"
+                                    border: task.team === false ? ("2px solid purple") : ("2px solid #3e98c7") 
                                 }}>
 
                                 <li key={`task--${task.id}`} className="list-item">
@@ -154,12 +158,12 @@ export const ToDoList = () => {
                                             type="checkbox" />
                                     </div>
                                     <div className="tasktext">
-                                    {taskEditing === task.id ? (
-                                        <input
-                                            type="text"
-                                            onChange=
-                                            {(evt) => setEditingTask(evt.target.value)}
-                                            value={editingTask} />) : (task.description)}
+                                        {taskEditing === task.id ? (
+                                            <input
+                                                type="text"
+                                                onChange=
+                                                {(evt) => setEditingTask(evt.target.value)}
+                                                value={editingTask} />) : (task.description)}
 
                                     </div>
                                     <fieldset className="taskbuttons">
@@ -182,6 +186,7 @@ export const ToDoList = () => {
                                     </fieldset>
                                 </li>
                             </Paper>
+                            )
                         }
 
 
@@ -192,4 +197,5 @@ export const ToDoList = () => {
             <ToDo addTask={addTask} />
         </>
     )
+    
 }

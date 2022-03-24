@@ -53,7 +53,7 @@ fieldset {
 .taskinput {
     display: flex;
     justify-content: space-evenly;
-    margin-left: 65px;
+    margin-left: 58px;
 }
 
 .form-group {
