@@ -1,18 +1,11 @@
 
 
 import { Box, Button, Checkbox, IconButton, Menu, MenuItem, Paper, Select } from "@mui/material";
-import Avatar from '@mui/material/Avatar';
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ToDo } from "./To-Do";
 import "./To-Do.css"
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import TimerIcon from '@mui/icons-material/Timer';
 import { TimerContext } from "../Timer/timerContext";
-import { SwitchCameraRounded } from "@mui/icons-material";
-import CheckIcon from '@mui/icons-material/Check';
 import { ListMenu } from "./listMenu";
 
 
@@ -123,8 +116,9 @@ export const ToDoList = () => {
 
     return (
         <>
-
+          <Paper style={{maxHeight: 300, overflow: 'auto'}} className="tasklistscroll">
             {
+               
                 tasks.map(
                     (task) => {
                         if ((task.team === true && task.teamId === userTeamId) 
@@ -138,7 +132,7 @@ export const ToDoList = () => {
                                 elevation={12}
                                 style={{
                                     margin: "0px 0px 8px 0px",
-                                    border: task.team === false ? ("2px solid purple") : ("2px solid #3e98c7") 
+                                    border: task.team === false ? ("2px solid purple") : ("2px solid #3e98c9") 
                                 }}>
 
                                 <li key={`task--${task.id}`} className="list-item">
@@ -189,13 +183,15 @@ export const ToDoList = () => {
                             )
                         }
 
-
                     }
                 )
+            
             }
+            </Paper>
 
             <ToDo addTask={addTask} />
         </>
+        
     )
     
 }

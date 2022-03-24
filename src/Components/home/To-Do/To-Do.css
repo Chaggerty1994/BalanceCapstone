@@ -12,6 +12,9 @@ fieldset {
     border: 0;
 }
 
+.tasklistscroll {
+    padding-bottom: 15px;
+}
 .list-item {
     display: flex;
     justify-content: space-between;
