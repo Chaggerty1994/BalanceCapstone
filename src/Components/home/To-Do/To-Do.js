@@ -1,9 +1,10 @@
 
-import { Button, InputLabel, Paper, Select } from "@mui/material";
+import { Button, IconButton, InputLabel, Paper, Select } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom"
 import "./To-Do.css"
 
+import CheckIcon from '@mui/icons-material/Check';
 // !!!! when i set a new task it is added to the list. but the text
 // in the form doesnt dissapear !!!!!!
 
@@ -90,7 +91,7 @@ export const ToDo = ({ addTask }) => {
                 <fieldset className="taskForm">
                     <div className="textandtimerselect">
                         <div className="form-group">
-
+                            <div className="taskinput">
                             <input
                                 onChange={
                                     (evt) => {
@@ -105,7 +106,8 @@ export const ToDo = ({ addTask }) => {
                                 className="form-control"
                                 placeholder="new task"
                             />
-
+                            </div>
+                            <div className="tasktimer">
                             <select
 
                                 onChange={
@@ -133,11 +135,12 @@ export const ToDo = ({ addTask }) => {
                                     )
                                 }
                             </select>
+                            </div>
                         </div>
                     </div>
-                    <Button onClick={addNewTask} className="btn btn-primary">
-                        Set Task
-                    </Button>
+                    <IconButton onClick={addNewTask} className="btn btn-primary">
+                        <CheckIcon />
+                    </IconButton>
                 </fieldset>
 
             </form>
