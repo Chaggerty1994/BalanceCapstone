@@ -94,12 +94,12 @@ export const ToDoList = () => {
                 .then((membersArray) => {
                     const teamMember = membersArray.find(
                         member => member.userId === parseInt(currentUser))
+                        console.log(teamMember)
                     
                     const userTeamId = teamMember.user.teamId
-                    console.log(userTeamId)
                     setUserTeamId(userTeamId)
                 })
-        }
+        }, [currentUser]
     )
 
 

@@ -37,6 +37,16 @@ export const ToDo = ({ addTask }) => {
         },
         []
     )
+
+    const [currentUser, setCurrentUser] = useState(0)
+
+
+    useEffect(
+        () => {
+            setCurrentUser(userId)
+        }, []
+    )
+
     const userId = localStorage.getItem("balance_user")
 
     const [userTeamId, setUserTeamId] = useState(0)
@@ -48,6 +58,7 @@ export const ToDo = ({ addTask }) => {
             fetch("http://localhost:8088/teamMembers?_expand=user")
                 .then(res => res.json())
                 .then((membersArray) => {
+                    // debugger
                     const teamMember = membersArray.find(
                         member => member.userId === parseInt(currentUser))
                     
@@ -55,17 +66,10 @@ export const ToDo = ({ addTask }) => {
                     console.log(userTeamId)
                     setUserTeamId(userTeamId)
                 })
-        }
+        }, [currentUser]
     )
 
-    const [currentUser, setCurrentUser] = useState(0)
-
-
-    useEffect(
-        () => {
-            setCurrentUser(userId)
-        }, []
-    )
+    
 
     const history = useHistory()
 
@@ -87,7 +91,7 @@ export const ToDo = ({ addTask }) => {
             
         }
 
-
+        
         
 
         const fetchOption = {
