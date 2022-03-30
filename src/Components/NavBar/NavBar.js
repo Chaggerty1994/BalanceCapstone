@@ -20,9 +20,9 @@ export const NavBar = () => {
                 <Link className="navbar__link" to="/home"><HomeRoundedIcon sx={{ color: [500] }} /></Link>
             </li>
 
-            <li className="navbar__item">
+            {/* <li className="navbar__item">
                 <Link className="navbar__link" to="/myteam"><GroupsIcon sx={{ color: [500] }}  /></Link>
-            </li>
+            </li> */}
            
 
             <li className="navbar__item active">
