@@ -7,6 +7,8 @@ import { ToDo } from "./To-Do";
 import "./To-Do.css"
 import { TimerContext } from "../Timer/timerContext";
 import { ListMenu } from "./listMenu";
+import { pink } from "@mui/material/colors";
+import { DragDropContext } from 'react-beautiful-dnd';
 
 
 export const ToDoList = () => {
@@ -80,13 +82,18 @@ export const ToDoList = () => {
             .then(fetchTasks)
     }
 
-    // const [teamMembers, setTeamMembers] = useState([])
+    
    
 
     const [userTeamId, setUserTeamId] = useState(0)
 
 
-    
+    // this use effect is fetching the teamMembers array from the database
+    // with the user information expanded on it. its then taking that array
+    // and finding the object in the array with the userId that is identical
+    // to the current user thats logged in. its then finding the teamId of that user
+    // then setting the userTeamId state variable to that Id to be compared 
+    // to the other users later. it is watching for the current user state to change
     useEffect(
         () => {
             fetch("http://localhost:8088/teamMembers?_expand=user")
@@ -103,7 +110,7 @@ export const ToDoList = () => {
     )
 
 
-    const [anchorEl, setAnchorEl] = useState(null)
+    
 
   
 
@@ -116,7 +123,7 @@ export const ToDoList = () => {
 
     return (
         <>
-          <Paper style={{maxHeight: 300, overflow: 'auto'}} className="tasklistscroll">
+          <Paper style={{minHeight: 300, maxHeight: 300, overflow: 'auto', backgroundColor: ''}} className="tasklistscroll">
             {
                
                 tasks.map(

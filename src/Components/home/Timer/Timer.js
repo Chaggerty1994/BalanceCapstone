@@ -100,7 +100,7 @@ export const Timer = () => {
                     // this is the functions second perameter. 
                     // it tells the setInterval function how often to run 
                     // it counts in milliseconds
-                }, 1000) 
+                }, 10) 
                 
                 // returning a function invoking the clearInterval hook
                 // it accepts the interval variable as a an argument.

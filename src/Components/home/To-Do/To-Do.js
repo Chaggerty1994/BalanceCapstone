@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom"
 import "./To-Do.css"
 import GroupsIcon from '@mui/icons-material/Groups';
-
+import PersonIcon from '@mui/icons-material/Person';
 import CheckIcon from '@mui/icons-material/Check';
 // !!!! when i set a new task it is added to the list. but the text
 // in the form doesnt dissapear !!!!!!
@@ -52,7 +52,7 @@ export const ToDo = ({ addTask }) => {
     const [userTeamId, setUserTeamId] = useState(0)
 
 
-    
+
     useEffect(
         () => {
             fetch("http://localhost:8088/teamMembers?_expand=user")
@@ -61,15 +61,16 @@ export const ToDo = ({ addTask }) => {
                     // debugger
                     const teamMember = membersArray.find(
                         member => member.userId === parseInt(currentUser))
-                    
-                    const userTeamId = teamMember.user.teamId
-                    console.log(userTeamId)
+
+                    const userTeamId = teamMember.teamId
+
                     setUserTeamId(userTeamId)
+                    
                 })
         }, [currentUser]
     )
 
-    
+
 
     const history = useHistory()
 
@@ -88,11 +89,11 @@ export const ToDo = ({ addTask }) => {
             timerId: parseInt(task.timerId),
             team: task.team,
             teamId: userTeamId
-            
+
         }
 
-        
-        
+
+
 
         const fetchOption = {
             method: "POST",
@@ -130,61 +131,89 @@ export const ToDo = ({ addTask }) => {
                     <div className="textandtimerselect">
                         <div className="form-group">
                             <div className="taskinput">
-                            <input
-                                onChange={
-                                    (evt) => {
-                                        const copy = { ...task }
-                                        copy.description = evt.target.value
-                                        newTask(copy)
+                                <input
+                                    onChange={
+                                        (evt) => {
+                                            const copy = { ...task }
+                                            copy.description = evt.target.value
+                                            newTask(copy)
+                                        }
                                     }
-                                }
-                                required autoFocus
-                                type="text"
-                                id="newTaskInput"
-                                className="form-control"
-                                placeholder="new task"
-                            />
+                                    required autoFocus
+                                    type="text"
+                                    id="newTaskInput"
+                                    className="form-control"
+                                    placeholder="new task"
+                                />
                             </div>
                             <div className="tasktimer">
-                            <select
+                                <select
 
-                                onChange={
-                                    (evt) => {
-                                        const copy = { ...task }
-                                        copy.timerId = evt.target.value
-                                        newTask(copy)
-                                    }
-                                }
-
-                                label="Pick a Timer"
-                                required autoFocus
-                                id="newTaskSelect"
-                                type="select"
-                                className="form-control"
-                                placeholder="timer"
-                            >
-                                <option value="0" key={`location--`}>Pick a Timer</option>
-                                {
-                                    timers.map(
-                                        (timerObject) => {
-                                            return <option value={timerObject.id} key={`timer--${timerObject.id}`}>{timerObject.aLength} : {timerObject.bLength}</option>
+                                    onChange={
+                                        (evt) => {
+                                            const copy = { ...task }
+                                            copy.timerId = evt.target.value
+                                            newTask(copy)
                                         }
+                                    }
 
-                                    )
-                                }
-                            </select>
+                                    label="Pick a Timer"
+                                    required autoFocus
+                                    id="newTaskSelect"
+                                    type="select"
+                                    className="form-control"
+                                    placeholder="timer"
+                                >
+                                    <option value="0" key={`location--`}>Pick a Timer</option>
+                                    {
+                                        timers.map(
+                                            (timerObject) => {
+                                                return <option value={timerObject.id} key={`timer--${timerObject.id}`}>{timerObject.aLength} : {timerObject.bLength}</option>
+                                            }
+
+                                        )
+                                    }
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <IconButton onClick={
+                    {task.team === false ? (
+                        
+                            <IconButton className="taskbutton"
+                                onClick={
                                     (evt) => {
                                         const copy = { ...task }
                                         copy.team = true
                                         newTask(copy)
                                     }
-                                } className="btn btn-primary">
+                                }>
+                                <GroupsIcon />
+                            </IconButton>
+                     
+                    ) : (
+                        
+                            <IconButton className="taskbutton"
+                                onClick={
+                                    (evt) => {
+                                        const copy = { ...task }
+                                        copy.team = false
+                                        newTask(copy)
+                                    }
+                                }>
+                                <PersonIcon />
+                            </IconButton>
+                        
+                    )}
+
+                    {/* <IconButton onClick={
+                        (evt) => {
+                            const copy = { ...task }
+                            copy.team = true
+                            newTask(copy)
+                        }
+                    } className="btn btn-primary">
                         <GroupsIcon />
-                    </IconButton>
+                    </IconButton> */}
                     <IconButton onClick={addNewTask} className="btn btn-primary">
                         <CheckIcon />
                     </IconButton>

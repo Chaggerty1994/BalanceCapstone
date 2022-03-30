@@ -77,9 +77,9 @@ fieldset {
     justify-content: space-evenly;
     text-align: center;
     align-items: center;
-    padding: 20px;
+    padding-right: 40px;
     max-height: 75px;
-    width: 325px;
+    width: 400px;
   
 }
 /* .tasktext {
