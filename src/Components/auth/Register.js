@@ -88,6 +88,7 @@ export const Register = (props) => {
                                     <input onChange={updateUser} type="email" id="email" className="form-control" placeholder="Email address" required />
                                 </fieldset>
                             </li>
+                       
                             <fieldset>
                                 <Button type="submit" > Register </Button>
                             </fieldset>

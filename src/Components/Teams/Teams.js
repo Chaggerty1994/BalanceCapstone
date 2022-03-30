@@ -119,7 +119,7 @@ export const MyTeam = () => {
                                     return <>
                                         <div className="myteam">
                                             <h2 className="teamheader">MyTeam</h2>
-                                            <div className="teamselect">
+                                            {/* <div className="teamselect">
                                                 <select
 
                                                     label="Add team member"
@@ -133,9 +133,9 @@ export const MyTeam = () => {
                                                         users.map(
                                                             (userObject) => {
                                                                 console.log(userObject)
-                                                                 if (userObject.teamId != currentTeamMember.teamId ) 
+                                                                //  if (userObject.teamId != currentTeamMember.teamId ) 
 
-                                                                 {return <option value={userObject.id} key={`user--${userObject.id}`}>{userObject.userName}</option>};
+                                                                 return <option value={userObject.id} key={`user--${userObject.id}`}>{userObject.userName}</option>;
                                                                 
                                                             }
 
@@ -143,7 +143,7 @@ export const MyTeam = () => {
                                                     }
 
                                                 </select>
-                                            </div>
+                                            </div> */}
                                             <ul >
                                                 <li className="myteamlist">
                                                     <div className="myteamlist">
@@ -157,11 +157,11 @@ export const MyTeam = () => {
 
                                                                             <li key={member.id} className="teamlist">
                                                                                 {member.user.userName}
-                                                                                <Button 
+                                                                                {/* <Button 
                                                                                 
                                                                                 className="removeTeamMember">
                                                                                     Remove
-                                                                                </Button>
+                                                                                </Button> */}
                                                                                 {
                                                                                     teamMembers.length - 1 > index ? (<hr />) : (null)
                                                                                 }
