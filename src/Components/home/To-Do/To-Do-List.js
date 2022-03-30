@@ -8,7 +8,7 @@ import "./To-Do.css"
 import { TimerContext } from "../Timer/timerContext";
 import { ListMenu } from "./listMenu";
 import { pink } from "@mui/material/colors";
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 
 export const ToDoList = () => {
@@ -123,7 +123,11 @@ export const ToDoList = () => {
 
     return (
         <>
+       
           <Paper style={{minHeight: 300, maxHeight: 300, overflow: 'auto', backgroundColor: ''}} className="tasklistscroll">
+
+            
+
             {
                
                 tasks.map(
@@ -141,7 +145,8 @@ export const ToDoList = () => {
                                     margin: "0px 0px 8px 0px",
                                     border: task.team === false ? ("2px solid purple") : ("2px solid #3e98c9") 
                                 }}>
-
+                                   
+                                            
                                 <li key={`task--${task.id}`} className="list-item">
                                     {/* if the current selected task has be chosen to edit
                         then render a input text box. */}
@@ -186,6 +191,8 @@ export const ToDoList = () => {
 
                                     </fieldset>
                                 </li>
+                                
+                              
                             </Paper>
                             )
                         }
@@ -194,7 +201,10 @@ export const ToDoList = () => {
                 )
             
             }
+       
+          
             </Paper>
+            
 
             <ToDo addTask={addTask} />
         </>
