@@ -28,7 +28,7 @@ This project was created for my Front End Capstone project at Nashville Software
 My main Objectives in building Balance were 
 
 - Use React to build a CRUD application
-- Style the applicaiton using Material UI
+- Style the application using Material UI
 
 I wanted the application to be visually appealing, minimalist, and useful.
 
