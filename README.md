@@ -47,6 +47,3 @@ If you want to play around with the code, follow the instructions below
 - In a browser, open localhost:3000 and you should see the app running.
 
 
-
-## Heading 4
-## Heading 5
