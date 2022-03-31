@@ -26,7 +26,7 @@ export const ToDoList = () => {
     )
     useEffect(
         () => {
-            fetch("http://localhost:8088/timers")
+            fetch("https://balance-api-drdtl.ondigitalocean.app/timers")
                 .then(res => res.json())
                 .then((timerArray) => {
                     setTimers(timerArray)
@@ -61,7 +61,7 @@ export const ToDoList = () => {
     )
 
     const fetchTasks = () => {
-        fetch("http://localhost:8088/tasks?_expand=timer&_expand=user")
+        fetch("https://balance-api-drdtl.ondigitalocean.app/tasks?_expand=timer&_expand=user")
             .then(res => res.json())
             .then((tasksFromAPI) => {
                 addTask(tasksFromAPI)
@@ -71,7 +71,7 @@ export const ToDoList = () => {
 
 
     const changeTask = (taskObject) => {
-        fetch(`http://localhost:8088/tasks/${taskObject.id}`, {
+        fetch(`https://balance-api-drdtl.ondigitalocean.app/tasks/${taskObject.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -96,7 +96,7 @@ export const ToDoList = () => {
     // to the other users later. it is watching for the current user state to change
     useEffect(
         () => {
-            fetch("http://localhost:8088/teamMembers?_expand=user")
+            fetch("https://balance-api-drdtl.ondigitalocean.app/teamMembers?_expand=user")
                 .then(res => res.json())
                 .then((membersArray) => {
                     const teamMember = membersArray.find(
@@ -125,9 +125,8 @@ export const ToDoList = () => {
         <>
        
           <Paper style={{minHeight: 300, maxHeight: 300, overflow: 'auto', backgroundColor: ''}} className="tasklistscroll">
-
             
-
+           
             {
                
                 tasks.map(
@@ -199,10 +198,8 @@ export const ToDoList = () => {
 
                     }
                 )
-            
             }
-       
-          
+            
             </Paper>
             
 

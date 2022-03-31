@@ -16,7 +16,7 @@ export const MyTeam = () => {
     // doing a fetch call for an array of all the users in the API
     useEffect(
         () => {
-            fetch("http://localhost:8088/users")
+            fetch("https://balance-api-drdtl.ondigitalocean.app/users")
                 .then(res => res.json())
                 .then((usersArray) => {
                     setUsers(usersArray)
@@ -38,7 +38,7 @@ export const MyTeam = () => {
         // console.log(currentTeamMember)
     useEffect(
         () => {
-            fetch("http://localhost:8088/teamMembers?_expand=user")
+            fetch("https://balance-api-drdtl.ondigitalocean.app/teamMembers?_expand=user")
                 .then(res => res.json())
                 .then((membersArray) => {
                     // find team member with same user id as the currentUser
@@ -74,7 +74,7 @@ export const MyTeam = () => {
 
 
     const fetchUsers = () => {
-        fetch("http://localhost:8088/users")
+        fetch("https://balance-api-drdtl.ondigitalocean.app/users")
             .then(res => res.json())
             .then((usersFromAPI) => {
                 setUsers(usersFromAPI)
@@ -82,7 +82,7 @@ export const MyTeam = () => {
     }
 
     const changeUser = (userObject) => {
-        fetch(`http://localhost:8088/users/${userObject.id}`, {
+        fetch(`https://balance-api-drdtl.ondigitalocean.app/users/${userObject.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
