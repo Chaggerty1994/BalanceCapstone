@@ -1,7 +1,11 @@
 .navbar {
     display: flex;
     flex-wrap: wrap;
-    margin-left: 260px;
+    width: auto;
+    text-align: center;
+   
+    align-items: center;
+    justify-content: center;
     
     
 }

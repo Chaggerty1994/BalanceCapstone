@@ -1,6 +1,7 @@
-.accountheader {
+.teamheader {
     text-align: center;
-    padding-top: 50px;
+    padding-top: 5px;
+    padding-left: 85px;
 }
 
 .accountinfo {
@@ -17,25 +18,23 @@
     flex-direction: row;
     justify-content: center;
     padding-top: 65px;
-    text-align: center;
-
     
 }
 ul {
     list-style-type: none;
 }
-.accountdetails {
+.myteam {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 45px;
+    margin-left: 20px;
     margin-bottom: 35px;
     padding-bottom: 50px;
     max-height: 90px;
     width: 325px;
     font-family:  sans-serif, helvetica;
-    letter-spacing: 3px;
-    font-size: 15px;
+    letter-spacing: 6px;
+    font-size: 25px;
     
     
 }
@@ -64,6 +63,3 @@ ul {
     padding-bottom: 15px;
     
 }
-
-
-

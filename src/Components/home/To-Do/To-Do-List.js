@@ -1,19 +1,14 @@
 
 
 import { Box, Button, Checkbox, IconButton, Menu, MenuItem, Paper, Select } from "@mui/material";
-import Avatar from '@mui/material/Avatar';
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ToDo } from "./To-Do";
 import "./To-Do.css"
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import TimerIcon from '@mui/icons-material/Timer';
 import { TimerContext } from "../Timer/timerContext";
-import { SwitchCameraRounded } from "@mui/icons-material";
-import CheckIcon from '@mui/icons-material/Check';
 import { ListMenu } from "./listMenu";
+import { pink } from "@mui/material/colors";
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 
 export const ToDoList = () => {
@@ -31,7 +26,7 @@ export const ToDoList = () => {
     )
     useEffect(
         () => {
-            fetch("http://localhost:8088/timers")
+            fetch("https://balance-api-drdtl.ondigitalocean.app/timers")
                 .then(res => res.json())
                 .then((timerArray) => {
                     setTimers(timerArray)
@@ -66,26 +61,17 @@ export const ToDoList = () => {
     )
 
     const fetchTasks = () => {
-        fetch("http://localhost:8088/tasks?_expand=timer")
+        fetch("https://balance-api-drdtl.ondigitalocean.app/tasks?_expand=timer&_expand=user")
             .then(res => res.json())
             .then((tasksFromAPI) => {
                 addTask(tasksFromAPI)
             })
     }
 
-    // const deleteTask = (id) => {
-    //     fetch(`http://localhost:8088/tasks/${id}`, {
-    //         method: "DELETE"
-    //     })
-    //         .then(res => res.json())
-    //         .then(fetchTasks)
 
-
-
-    // }
 
     const changeTask = (taskObject) => {
-        fetch(`http://localhost:8088/tasks/${taskObject.id}`, {
+        fetch(`https://balance-api-drdtl.ondigitalocean.app/tasks/${taskObject.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -96,25 +82,37 @@ export const ToDoList = () => {
             .then(fetchTasks)
     }
 
-    // const editTask = (taskObject) => {
+    
+   
 
-    //     const copy = { ...taskObject }
-    //     copy.description = editingTask
-    //     changeTask(copy)
+    const [userTeamId, setUserTeamId] = useState(0)
 
-    // }
 
-    const [anchorEl, setAnchorEl] = useState(null)
+    // this use effect is fetching the teamMembers array from the database
+    // with the user information expanded on it. its then taking that array
+    // and finding the object in the array with the userId that is identical
+    // to the current user thats logged in. its then finding the teamId of that user
+    // then setting the userTeamId state variable to that Id to be compared 
+    // to the other users later. it is watching for the current user state to change
+    useEffect(
+        () => {
+            fetch("https://balance-api-drdtl.ondigitalocean.app/teamMembers?_expand=user")
+                .then(res => res.json())
+                .then((membersArray) => {
+                    const teamMember = membersArray.find(
+                        member => member.userId === parseInt(currentUser))
+                        console.log(teamMember)
+                    
+                    const userTeamId = teamMember.user.teamId
+                    setUserTeamId(userTeamId)
+                })
+        }, [currentUser]
+    )
 
-    const open = Boolean(anchorEl)
 
-    const handleClose = () => {
-        setAnchorEl(null)
-    }
+    
 
-    const openMenu = (evt) => {
-        setAnchorEl(evt.currentTarget)
-    }
+  
 
     const { workMinutes,
         restMinutes,
@@ -125,18 +123,29 @@ export const ToDoList = () => {
 
     return (
         <>
-
+       
+          <Paper style={{minHeight: 300, maxHeight: 300, overflow: 'auto', backgroundColor: ''}} className="tasklistscroll">
+            
+           
             {
+               
                 tasks.map(
                     (task) => {
-                        if (task.userId === parseInt(currentUser)) {
-                            return <Paper className="listItem"
+                        if ((task.team === true && task.teamId === userTeamId) 
+                             || task.userId === parseInt(currentUser)) {
+                            
+                            return( 
+                            
+                            <Paper
+
+                                className="listItem"
                                 elevation={12}
                                 style={{
                                     margin: "0px 0px 8px 0px",
-                                    border: "2px solid purple"
+                                    border: task.team === false ? ("2px solid purple") : ("2px solid #3e98c9") 
                                 }}>
-
+                                   
+                                            
                                 <li key={`task--${task.id}`} className="list-item">
                                     {/* if the current selected task has be chosen to edit
                         then render a input text box. */}
@@ -154,12 +163,12 @@ export const ToDoList = () => {
                                             type="checkbox" />
                                     </div>
                                     <div className="tasktext">
-                                    {taskEditing === task.id ? (
-                                        <input
-                                            type="text"
-                                            onChange=
-                                            {(evt) => setEditingTask(evt.target.value)}
-                                            value={editingTask} />) : (task.description)}
+                                        {taskEditing === task.id ? (
+                                            <input
+                                                type="text"
+                                                onChange=
+                                                {(evt) => setEditingTask(evt.target.value)}
+                                                value={editingTask} />) : (task.description)}
 
                                     </div>
                                     <fieldset className="taskbuttons">
@@ -181,15 +190,22 @@ export const ToDoList = () => {
 
                                     </fieldset>
                                 </li>
+                                
+                              
                             </Paper>
+                            )
                         }
-
 
                     }
                 )
             }
+            
+            </Paper>
+            
 
             <ToDo addTask={addTask} />
         </>
+        
     )
+    
 }

@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# Balance
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Balance is a time management application that helps its users organize their lives. Offering a user-friendly interface to keep track of personal and team oriented goals with customizable lists, and regiment their point of focus throughout the day with a pomodoro timer.
 
-## Available Scripts
+     How it works
+----------------------------------------------------------------
 
-In the project directory, you can run:
+Users must register to create a profile using their name and email address. The email address is not used by the site for anything besides log in so you can make one up if youd like.
 
-### `npm start`
+Once you have logged in, you will be directed to the home page of the application where you will see a pomodoro timer with a dropdown menu to the right, and an empty to do list with a form for new to-do's to the left. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+When adding a task to your to do list you may add the text, specify a time incriment you would like to focus on the task for, say if it is a personal or a group task, and submit it. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+When the task posts to the list it will be purple if it is personal or light - blue if it is a group task. If you specify a task to be a group task it will appear in other users list. 
 
-### `npm test`
+You can edit the text of a posted task, trigger the associated timer settings, change the privacy from personal to group and vice versa, as well as delete the task.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The pomodoro timer has A and B settings buttons for work and rest mode, a start and stop button and a dropdown menu to change the timer incriments. Any time you change the timer settings you must hit the A button to reset the timer.
 
-### `npm run build`
+There is a My Account page where you can view and edit your personal account information.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    The Development
+--------------------------------------------
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This project was created for my Front End Capstone project at Nashville Software School. 
 
-### `npm run eject`
+My main Objectives in building Balance were 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Use React to build a CRUD application
+- Style the applicaiton using Material UI
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+I wanted the application to be visually appealing, minimalist, and useful.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    How to install and run this application
+-------------------------------------------
+If you would like to use this application you can use the [live site](https://balance-capstone-tis8s.ondigitalocean.app/login)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+If you want to play around with the code, follow the instructions below
 
-## Learn More
+- Clone this repository
+- Make a secondary directory for the database like [this one](https://github.com/Chaggerty1994/capstone-api)
+- This repo is for the live site so you must replace remoteURL with **"localhost:8088"**
+- In the database directory run **json-server database.json -p 8088 -w**
+- Open another terminal window and navigate the the project directory
+- In the project directory run **npm start**
+- In a browser, open localhost:3000 and you should see the app running.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Heading 4
+## Heading 5

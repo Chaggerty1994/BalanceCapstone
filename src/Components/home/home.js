@@ -5,6 +5,7 @@ import { ToDoList } from "./To-Do/To-Do-List";
 import "./home.css"
 import { TimerContext } from "./Timer/timerContext";
 import { useState } from "react";
+import { Paper } from "@mui/material";
 
 
 
@@ -32,7 +33,9 @@ export const Home = () => {
         <div className="listandtimer">
             <div className="list">
                 <div className="ToDoListGroup">
+                    {/* <Paper style={{maxHeight: 400, overflow: 'auto'}}> */}
                     <ToDoList />
+                    {/* </Paper> */}
                 </div>
             </div>
 

@@ -23,13 +23,7 @@ export const Balance = () => {
 
                                 <ApplicationViews />
                                 <h1 className="pageheader">Bal_ance</h1>
-                                {/* <Image
-                                    src={helloDanhRed}
-                                    className="home"
-                                    style={{ marginTop: "-2em", marginBottom: "-10em" }}
-                                    size="large"
-                                    onClick={toggleRed}
-                                /> */}
+                                {/* <img className="logo" src="./BalanceLogo.png"/> */}
                             </>
                         );
                     } else {
