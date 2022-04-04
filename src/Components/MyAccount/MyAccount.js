@@ -139,7 +139,7 @@ export const MyAccount = () => {
                                     {userNameEditing === user.id ? (<Button className="nameedit" 
                                     onClick={() => {
                                             editUserName(user)
-                                            setUserNameEditing(null)
+                                            setUserNameEditing(editingUserName)
                                             
                                     }}> Submit Edit</Button>) : 
                                         (<Button className="namebutton" onClick={() => 
@@ -161,7 +161,7 @@ export const MyAccount = () => {
                                     {userEmailEditing === user.id ? (<Button className="namebutton" 
                                     onClick={() => {
                                             editUserEmail(user)
-                                            setUserEmailEditing(null)
+                                            setUserEmailEditing(editingUserEmail)
                                             
                                     }}> Submit Edit</Button>) : 
                                         (<Button className="nameButton" onClick={() => 
@@ -183,7 +183,7 @@ export const MyAccount = () => {
                                     {usersUserNameEditing === user.id ? (<Button className="nameedit" 
                                     onClick={() => {
                                             editUsersUserName(user)
-                                            setUsersUserNameEditing(null)
+                                            setUsersUserNameEditing(editingUsersUserName)
                                             
                                     }}> Submit Edit</Button>) : 
                                         (<Button className="namebutton" onClick={() => 
