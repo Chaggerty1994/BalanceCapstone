@@ -31,7 +31,7 @@ export const ListMenu = ({
     }
 
     const deleteTask = (id) => {
-        fetch(`https://balance-api-drdtl.ondigitalocean.app/tasks/${id}`, {
+        fetch(`http://localhost:8088/tasks/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())

@@ -16,7 +16,7 @@ export const MyAccount = () => {
     // doing a fetch call for an array of all the users in the API
     useEffect(
         () => {
-            fetch("https://balance-api-drdtl.ondigitalocean.app/users")
+            fetch("http://localhost:8088/users")
                 .then(res => res.json())
                 .then((usersArray) => {
                     setUsers(usersArray)
@@ -56,7 +56,7 @@ export const MyAccount = () => {
     const [editingUsersUserName, setEditingUsersUserName] = useState('')
 
     const fetchUsers = () => {
-        fetch("https://balance-api-drdtl.ondigitalocean.app/users")
+        fetch("http://localhost:8088/users")
             .then(res => res.json())
             .then((usersFromAPI) => {
                 setUsers(usersFromAPI)
@@ -64,7 +64,7 @@ export const MyAccount = () => {
     }
 
     const changeUser = (userObject) => {
-        fetch(`https://balance-api-drdtl.ondigitalocean.app/users/${userObject.id}`, {
+        fetch(`http://localhost:8088/users/${userObject.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

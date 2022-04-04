@@ -29,7 +29,7 @@ export const ToDo = ({ addTask }) => {
 
     useEffect(
         () => {
-            fetch("https://balance-api-drdtl.ondigitalocean.app/timers")
+            fetch("http://localhost:8088/timers")
                 .then(res => res.json())
                 .then((timerArray) => {
                     setTimer(timerArray)
@@ -55,7 +55,7 @@ export const ToDo = ({ addTask }) => {
 
     useEffect(
         () => {
-            fetch("https://balance-api-drdtl.ondigitalocean.app/teamMembers?_expand=user")
+            fetch("http://localhost:8088/teamMembers?_expand=user")
                 .then(res => res.json())
                 .then((membersArray) => {
                     // debugger
@@ -104,8 +104,8 @@ export const ToDo = ({ addTask }) => {
         }
 
 
-        return fetch("https://balance-api-drdtl.ondigitalocean.app/tasks", fetchOption)
-            .then(() => { return fetch("https://balance-api-drdtl.ondigitalocean.app/tasks?_expand=timer") })
+        return fetch("http://localhost:8088/tasks", fetchOption)
+            .then(() => { return fetch("http://localhost:8088/tasks?_expand=timer") })
             .then(res => res.json())
             .then((tasksFromAPI) => {
                 addTask(tasksFromAPI)

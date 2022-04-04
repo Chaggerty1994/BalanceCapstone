@@ -119,7 +119,7 @@ export const Timer = () => {
 // fetch the timers array from the API
     useEffect(
         () => {
-            fetch("https://balance-api-drdtl.ondigitalocean.app/timers")
+            fetch("http://localhost:8088/timers")
                 .then(res => res.json())
                 .then((timerArray) => {
                     setTimer(timerArray)
