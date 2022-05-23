@@ -14,9 +14,9 @@ export const ApplicationViews = () => {
                 <Home />
             </Route>
 
-            {/* <Route exact path="/myaccount">
+            <Route exact path="/myaccount">
                 <MyAccount />
-            </Route> */}
+            </Route>
 
             {/* <Route exact path="/myteam">
                 <MyTeam />
