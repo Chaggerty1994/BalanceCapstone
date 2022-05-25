@@ -25,6 +25,7 @@ export const MyAccount = () => {
         []
     )
 
+    // state variable for the user thats logged in currently
     const [currentUser, setCurrentUser] = useState(0)
 
 
@@ -33,11 +34,14 @@ export const MyAccount = () => {
             setCurrentUser(userId)
         }, []
     )
-        console.log(currentUser)
- 
-    // assigning the value of the user in localstorage to a variable
-        const userId = localStorage.getItem("balance_user")
-        console.log(userId)
+    console.log(currentUser)
+
+    // assigning the value of the userId in localstorage to a variable
+    const userId = localStorage.getItem("balance_user")
+    console.log(userId)
+
+
+
 
 
     // declaring a state variable for the specific property of the user that you are 
@@ -74,134 +78,137 @@ export const MyAccount = () => {
             .then(res => res.json())
             .then(fetchUsers)
     }
-        
+
     const editUserName = (userObject) => {
-     
+
         const copy = { ...userObject }
         copy.name = editingUserName
         changeUser(copy)
-        
+
     }
 
     const editUserEmail = (userObject) => {
-     
+
         const copy = { ...userObject }
         copy.email = editingUserEmail
         changeUser(copy)
-        
+
     }
 
 
     const editUsersUserName = (userObject) => {
-     
+
         const copy = { ...userObject }
         copy.userName = editingUsersUserName
         changeUser(copy)
-        
+
     }
 
-    
+
 
 
     return (
-        
-        
+
+
         <>
-        <div className="account">
-        <Paper className="accountinfo"
-            elevation={12}
-            style={{
-                margin: "0px 0px 8px 0px",
-                border: "2px solid purple" 
-                }}>
+            <div className="account">
+                <Paper className="accountinfo"
+                    elevation={12}
+                    style={{
+                        margin: "0px 0px 8px 0px",
+                        border: "2px solid purple"
+                    }}>
                     {
-                        currentUser && users ?    
-                        users.map (
-                            (user) => { 
+                        currentUser && users ?
+                            users.map(
+                                (user) => {
 
-                                // need to figure out how to get the currently logged in user 
-                                // so i can compare id to the users being mapped
-                                if (user.id === parseInt(currentUser)) {
-                                    return  <>
-                                    <div className="accountdetails">
-                                    <ul >
-                                    <h2 className="nameheader">Name</h2>
-                                    <li className="name"  >  
+                                    // need to figure out how to get the currently logged in user 
+                                    // so i can compare id to the users being mapped
+                                    if (user.id === parseInt(currentUser)) {
+                                        return <>
+                                            <div className="accountdetails">
+                                                <ul >
+                                                    <h2 className="nameheader">Name</h2>
+                                                    <li className="name"  >
 
-                                    {userNameEditing === user.id ? (
-                                          <input type="text" 
-                                          onChange={(evt) => setEditingUserName(evt.target.value) } 
-                                          value={editingUserName} />
-                                    ) : (
-                                        <> {user.name} </>
-                                    )}
-                                    </li>
-                                    {userNameEditing === user.id ? (<Button className="nameedit" 
-                                    onClick={() => {
-                                            editUserName(user)
-                                            setUserNameEditing(editingUserName)
-                                            
-                                    }}> Submit Edit</Button>) : 
-                                        (<Button className="namebutton" onClick={() => 
-                                        setUserNameEditing(user.id)}> Edit </Button>)}
-                                    
-                                      
-                                    
-                                    <hr />
-                                    <h2 className="useremail">Email</h2>
-                                    <li className="email"> 
-                                    {userEmailEditing === user.id ? (
-                                          <input type="text" 
-                                          onChange={(evt) => setEditingUserEmail(evt.target.value) } 
-                                          value={editingUserEmail} />
-                                    ) : (
-                                        <> {user.email} </>
-                                    )}
-                                      </li>
-                                    {userEmailEditing === user.id ? (<Button className="namebutton" 
-                                    onClick={() => {
-                                            editUserEmail(user)
-                                            setUserEmailEditing(editingUserEmail)
-                                            
-                                    }}> Submit Edit</Button>) : 
-                                        (<Button className="nameButton" onClick={() => 
-                                        setUserEmailEditing(user.id)}> Edit</Button>)}
+                                                        {userNameEditing === user.id ? (
+                                                            <input type="text"
+                                                                onChange={(evt) =>
+                                                                    setEditingUserName(evt.target.value)
+
+                                                                }
+                                                                value={editingUserName} />
+                                                        ) : (
+                                                            <> {user.name} </>
+                                                        )}
+                                                    </li>
+                                                    {userNameEditing === user.id ? (<Button className="nameedit"
+                                                        onClick={() => {
+                                                            editUserName(user)
+                                                            setUserNameEditing(editingUserName)
+
+                                                        }}> Submit Edit</Button>) :
+                                                        (<Button className="namebutton" onClick={() =>
+                                                            setUserNameEditing(user.id)}> Edit </Button>)}
 
 
-                                  
-                                    <hr />
-                                    <h2>UserName</h2>
-                                    <li className="email"> 
-                                    {usersUserNameEditing === user.id ? (
-                                          <input type="text" 
-                                          onChange={(evt) => setEditingUsersUserName(evt.target.value) } 
-                                          value={editingUsersUserName} />
-                                    ) : (
-                                        <> {user.userName} </>
-                                    )}
-                                        </li>
-                                    {usersUserNameEditing === user.id ? (<Button className="nameedit" 
-                                    onClick={() => {
-                                            editUsersUserName(user)
-                                            setUsersUserNameEditing(editingUsersUserName)
-                                            
-                                    }}> Submit Edit</Button>) : 
-                                        (<Button className="namebutton" onClick={() => 
-                                        setUsersUserNameEditing(user.id)}> Edit </Button>)}
-                                    
 
-                                    </ul>
-                                    </div>
-                                         </>
-                                    
-                                          
+                                                    <hr />
+                                                    <h2 className="useremail">Email</h2>
+                                                    <li className="email">
+                                                        {userEmailEditing === user.id ? (
+                                                            <input type="text"
+                                                                onChange={(evt) => setEditingUserEmail(evt.target.value)}
+                                                                value={editingUserEmail} />
+                                                        ) : (
+                                                            <> {user.email} </>
+                                                        )}
+                                                    </li>
+                                                    {userEmailEditing === user.id ? (<Button className="namebutton"
+                                                        onClick={() => {
+                                                            editUserEmail(user)
+                                                            setUserEmailEditing(editingUserEmail)
+
+                                                        }}> Submit Edit</Button>) :
+                                                        (<Button className="nameButton" onClick={() =>
+                                                            setUserEmailEditing(user.id)}> Edit</Button>)}
+
+
+
+                                                    <hr />
+                                                    <h2>UserName</h2>
+                                                    <li className="email">
+                                                        {usersUserNameEditing === user.id ? (
+                                                            <input type="text"
+                                                                onChange={(evt) => setEditingUsersUserName(evt.target.value)}
+                                                                value={editingUsersUserName} />
+                                                        ) : (
+                                                            <> {user.userName} </>
+                                                        )}
+                                                    </li>
+                                                    {usersUserNameEditing === user.id ? (<Button className="nameedit"
+                                                        onClick={() => {
+                                                            editUsersUserName(user)
+                                                            setUsersUserNameEditing(editingUsersUserName)
+
+                                                        }}> Submit Edit</Button>) :
+                                                        (<Button className="namebutton" onClick={() =>
+                                                            setUsersUserNameEditing(user.id)}> Edit </Button>)}
+
+
+                                                </ul>
+                                            </div>
+                                        </>
+
+
+                                    }
                                 }
-                            }
-                        ) : "" 
+                            ) : ""
                     }
-       
-        </Paper >
-        </div>
+
+                </Paper >
+            </div>
         </>
     )
 }

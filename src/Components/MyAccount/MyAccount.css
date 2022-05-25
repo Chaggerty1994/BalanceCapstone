@@ -35,7 +35,7 @@ ul {
     width: 325px;
     font-family:  sans-serif, helvetica;
     letter-spacing: 3px;
-    font-size: 15px;
+    font-size: 18px;
     
     
 }
@@ -57,6 +57,13 @@ ul {
     
 }
 
+#usernametext {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-bottom: 32px;
+}
+
 .email {
     display: flex;
     flex-direction: column;
@@ -65,5 +72,22 @@ ul {
     
 }
 
+.edit {
+    display: flex;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.submitedit {
+    display: flex;
+    text-align: center;
+    padding-left: 80px;
+}
+#editsubmit {
+    display: flex;
+    text-align: center;
+    padding-top: 15px;
+    padding-left: 44px;
+}
 
 

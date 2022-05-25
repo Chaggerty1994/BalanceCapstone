@@ -100,36 +100,36 @@ export const ListMenu = ({
                 </MenuItem>
 
                 {task.team === false ? (
-                        <MenuItem>
-                        <IconButton className="taskbutton" 
-                        onClick={
-                            (evt) => {
-                                const copy = { ...task }
-                                copy.team = true
-                                changeTask(copy)
-                            }
-                        }>
-                        <GroupsIcon />
+                    <MenuItem>
+                        <IconButton className="taskbutton"
+                            onClick={
+                                (evt) => {
+                                    const copy = { ...task }
+                                    copy.team = true
+                                    changeTask(copy)
+                                }
+                            }>
+                            <GroupsIcon />
                         </IconButton>
-                        </MenuItem>
+                    </MenuItem>
                 ) : (
                     <MenuItem>
-                    <IconButton className="taskbutton" 
-                    onClick={
-                        (evt) => {
-                            const copy = { ...task }
-                            copy.team = false
-                            changeTask(copy)
-                        }
-                    }>
-                    <PersonIcon />
-                    </IconButton>
+                        <IconButton className="taskbutton"
+                            onClick={
+                                (evt) => {
+                                    const copy = { ...task }
+                                    copy.team = false
+                                    changeTask(copy)
+                                }
+                            }>
+                            <PersonIcon />
+                        </IconButton>
                     </MenuItem>
                 )}
 
-            
 
-             
+
+
 
                 <MenuItem>
                     <IconButton className="taskbutton" onClick={(evt) => {

@@ -14,7 +14,7 @@ export const NavBar = () => {
     return (
         <ul className="navbar">
             <li className="navbar__item active">
-                <Link className="navbar__link" to="/myaccount"><AccountBoxRoundedIcon sx={{ color: [100] }} /></Link>
+                <Link className="navbar__link" to="/myaccountnew"><AccountBoxRoundedIcon sx={{ color: [100] }} /></Link>
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/home"><HomeRoundedIcon sx={{ color: [500] }} /></Link>

@@ -34,18 +34,24 @@ export const MyTeam = () => {
     )
 
     const [teamMembers, setTeamMembers] = useState([])
+
     const [currentTeamMember, setCurrentTeamMember] = useState([])
+
         // console.log(currentTeamMember)
+
+
     useEffect(
         () => {
             fetch("https://balance-api-drdtl.ondigitalocean.app/teamMembers?_expand=user")
                 .then(res => res.json())
                 .then((membersArray) => {
+                    // console.log(membersArray)
                     // find team member with same user id as the currentUser
                     const teamMember = membersArray.find(
-                        member => member.userId === parseInt(currentUser))
+                        m => m.user.userId === parseInt(userId))
+
+                        console.log(teamMember)
                         setCurrentTeamMember(teamMember)
-                    console.log(teamMember)
                     // membersArray.filter all teammembers with team id as the user
                     if (teamMember) {
                         const currentTeam = membersArray.filter(
@@ -56,7 +62,7 @@ export const MyTeam = () => {
                     }
                 })
         },
-        [currentUser]
+        []
     )
 
        
@@ -119,7 +125,7 @@ export const MyTeam = () => {
                                     return <>
                                         <div className="myteam">
                                             <h2 className="teamheader">MyTeam</h2>
-                                            {/* <div className="teamselect">
+                                            <div className="teamselect">
                                                 <select
 
                                                     label="Add team member"
@@ -132,7 +138,7 @@ export const MyTeam = () => {
                                                     {
                                                         users.map(
                                                             (userObject) => {
-                                                                console.log(userObject)
+                                                                // console.log(userObject)
                                                                 //  if (userObject.teamId != currentTeamMember.teamId ) 
 
                                                                  return <option value={userObject.id} key={`user--${userObject.id}`}>{userObject.userName}</option>;
@@ -143,7 +149,7 @@ export const MyTeam = () => {
                                                     }
 
                                                 </select>
-                                            </div> */}
+                                            </div>
                                             <ul >
                                                 <li className="myteamlist">
                                                     <div className="myteamlist">
