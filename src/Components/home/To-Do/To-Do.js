@@ -53,22 +53,22 @@ export const ToDo = ({ addTask }) => {
 
 
 
-    useEffect(
-        () => {
-            fetch("http://localhost:8088/teamMembers?_expand=user")
-                .then(res => res.json())
-                .then((membersArray) => {
-                    // debugger
-                    const teamMember = membersArray.find(
-                        member => member.userId === parseInt(currentUser))
+    // useEffect(
+    //     () => {
+    //         fetch("http://localhost:8088/teamMembers?_expand=user")
+    //             .then(res => res.json())
+    //             .then((membersArray) => {
+    //                 // debugger
+    //                 const teamMember = membersArray.find(
+    //                     member => member.userId === parseInt(currentUser))
+    //                     console.log(teamMember)
+    //                 const userTeamId = teamMember.teamId
 
-                    const userTeamId = teamMember.teamId
-
-                    setUserTeamId(userTeamId)
+    //                 setUserTeamId(userTeamId)
                     
-                })
-        }, [currentUser]
-    )
+    //             })
+    //     }, []
+    // )
 
 
 

@@ -105,7 +105,8 @@ export const MyTeam = () => {
             <div className="account">
                 <Paper className="accountinfo"
                     elevation={12}
-                    style={{
+                    sx={{
+                        // minWidth: "80vw",
                         margin: "0px 0px 8px 0px",
                         border: "2px solid purple"
                     }}>

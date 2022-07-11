@@ -82,8 +82,8 @@ export const ToDoList = () => {
             .then(fetchTasks)
     }
 
-    
-   
+
+
 
     const [userTeamId, setUserTeamId] = useState(0)
 
@@ -94,25 +94,25 @@ export const ToDoList = () => {
     // to the current user thats logged in. its then finding the teamId of that user
     // then setting the userTeamId state variable to that Id to be compared 
     // to the other users later. it is watching for the current user state to change
-    useEffect(
-        () => {
-            fetch("http://localhost:8088/teamMembers?_expand=user")
-                .then(res => res.json())
-                .then((membersArray) => {
-                    const teamMember = membersArray.find(
-                        member => member.userId === parseInt(currentUser))
-                        console.log(teamMember)
-                    
-                    const userTeamId = teamMember.user.teamId
-                    setUserTeamId(userTeamId)
-                })
-        }, [currentUser]
-    )
+    // useEffect(
+    //     () => {
+    //         fetch("http://localhost:8088/teamMembers?_expand=user")
+    //             .then(res => res.json())
+    //             .then((membersArray) => {
+    //                 const teamMember = membersArray.find(
+    //                     member => member.userId === parseInt(currentUser))
+    //                     console.log(teamMember)
+
+    //                 const userTeamId = teamMember.teamId
+    //                 setUserTeamId(userTeamId)
+    //             })
+    //     }, []
+    // )
 
 
-    
 
-  
+
+
 
     const { workMinutes,
         restMinutes,
@@ -123,92 +123,92 @@ export const ToDoList = () => {
 
     return (
         <>
-       
-          <Paper style={{minHeight: 300, maxHeight: 300, overflow: 'auto', backgroundColor: ''}} className="tasklistscroll">
 
-            
+            <Paper style={{ minHeight: 300, maxHeight: 300, overflow: 'auto', backgroundColor: '' }} className="tasklistscroll">
 
-            {
-               
-                tasks.map(
-                    (task) => {
-                        if ((task.team === true && task.teamId === userTeamId) 
-                             || task.userId === parseInt(currentUser)) {
-                            
-                            return( 
-                            
-                            <Paper
 
-                                className="listItem"
-                                elevation={12}
-                                style={{
-                                    margin: "0px 0px 8px 0px",
-                                    border: task.team === false ? ("2px solid purple") : ("2px solid #3e98c9") 
-                                }}>
-                                   
-                                            
-                                <li key={`task--${task.id}`} className="list-item">
-                                    {/* if the current selected task has be chosen to edit
+
+                {
+
+                    tasks.map(
+                        (task) => {
+                            if ((task.team === true && task.teamId === userTeamId)
+                                || task.userId === parseInt(currentUser)) {
+
+                                return (
+
+                                    <Paper
+
+                                        className="listItem"
+                                        elevation={12}
+                                        style={{
+                                            margin: "0px 0px 8px 0px",
+                                            border: task.team === false ? ("2px solid purple") : ("2px solid #3e98c9")
+                                        }}>
+
+
+                                        <li key={`task--${task.id}`} className="list-item">
+                                            {/* if the current selected task has be chosen to edit
                         then render a input text box. */}
-                                    <div className="checkbox">
+                                            <div className="checkbox">
 
-                                        <Checkbox
-                                            onChange={
-                                                (evt) => {
-                                                    const copy = { ...task }
-                                                    copy.active = !evt.target.checked
-                                                    delete copy.timer
-                                                    changeTask(copy)
-                                                }
-                                            }
-                                            type="checkbox" />
-                                    </div>
-                                    <div className="tasktext">
-                                        {taskEditing === task.id ? (
-                                            <input
-                                                type="text"
-                                                onChange=
-                                                {(evt) => setEditingTask(evt.target.value)}
-                                                value={editingTask} />) : (task.description)}
+                                                <Checkbox
+                                                    onChange={
+                                                        (evt) => {
+                                                            const copy = { ...task }
+                                                            copy.active = !evt.target.checked
+                                                            delete copy.timer
+                                                            changeTask(copy)
+                                                        }
+                                                    }
+                                                    type="checkbox" />
+                                            </div>
+                                            <div className="tasktext">
+                                                {taskEditing === task.id ? (
+                                                    <input
+                                                        type="text"
+                                                        onChange=
+                                                        {(evt) => setEditingTask(evt.target.value)}
+                                                        value={editingTask} />) : (task.description)}
 
-                                    </div>
-                                    <fieldset className="taskbuttons">
-
-
-                                        <div>
-                                            <ListMenu className="listMenu"
-                                                editingTask={editingTask}
-                                                changeTask={changeTask}
-                                                fetchTasks={fetchTasks}
-                                                taskEditing={taskEditing}
-                                                setTaskEditing={setTaskEditing}
-                                                setWorkMinutes={setWorkMinutes}
-                                                setRestMinutes={setRestMinutes}
-                                                task={task}
-                                                setEditingTask={setEditingTask} />
-                                        </div>
+                                            </div>
+                                            <fieldset className="taskbuttons">
 
 
-                                    </fieldset>
-                                </li>
-                                
-                              
-                            </Paper>
-                            )
+                                                <div>
+                                                    <ListMenu className="listMenu"
+                                                        editingTask={editingTask}
+                                                        changeTask={changeTask}
+                                                        fetchTasks={fetchTasks}
+                                                        taskEditing={taskEditing}
+                                                        setTaskEditing={setTaskEditing}
+                                                        setWorkMinutes={setWorkMinutes}
+                                                        setRestMinutes={setRestMinutes}
+                                                        task={task}
+                                                        setEditingTask={setEditingTask} />
+                                                </div>
+
+
+                                            </fieldset>
+                                        </li>
+
+
+                                    </Paper>
+                                )
+                            }
+
                         }
+                    )
 
-                    }
-                )
-            
-            }
-       
-          
+                }
+
+
             </Paper>
-            
+
 
             <ToDo addTask={addTask} />
         </>
-        
+
     )
-    
+
 }

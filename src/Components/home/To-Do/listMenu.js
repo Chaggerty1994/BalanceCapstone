@@ -37,8 +37,6 @@ export const ListMenu = ({
             .then(res => res.json())
             .then(fetchTasks)
 
-
-
     }
 
     const [anchorEl, setAnchorEl] = useState(null)
@@ -104,6 +102,7 @@ export const ListMenu = ({
                         <IconButton className="taskbutton" 
                         onClick={
                             (evt) => {
+                                console.log(task.id)
                                 const copy = { ...task }
                                 copy.team = true
                                 changeTask(copy)
@@ -141,8 +140,10 @@ export const ListMenu = ({
                 </MenuItem>
 
                 <MenuItem>
-                    <IconButton className="taskbutton" onClick={() => {
-                        deleteTask(task.id)
+                    <IconButton className="taskbutton"  
+                    onClick={() => {
+                        const currentTask = task
+                        deleteTask(currentTask.id)
                     }}><DeleteIcon /></IconButton>
                 </MenuItem>
 
