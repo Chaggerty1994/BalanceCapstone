@@ -19,7 +19,7 @@ export const ToDo = ({ addTask }) => {
         active: true,
         timerId: 0,
         team: false,
-        teamId: 0
+        
 
     })
 
@@ -87,8 +87,8 @@ export const ToDo = ({ addTask }) => {
             description: task.description,
             active: task.active,
             timerId: parseInt(task.timerId),
-            team: task.team,
-            teamId: userTeamId
+            team: task.team
+            
 
         }
 
@@ -114,7 +114,7 @@ export const ToDo = ({ addTask }) => {
                 const newTaskInput = document.querySelector("#newTaskInput")
                 const newTaskSelect = document.querySelector("#newTaskSelect")
                 newTaskInput.value = ""
-                newTaskSelect.value = ""
+                newTaskSelect.value = "Pick A Timer"
 
             })
 

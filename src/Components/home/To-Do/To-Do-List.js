@@ -132,7 +132,7 @@ export const ToDoList = () => {
 
                     tasks.map(
                         (task) => {
-                            if ((task.team === true && task.teamId === userTeamId)
+                            if ((task.team === true )
                                 || task.userId === parseInt(currentUser)) {
 
                                 return (

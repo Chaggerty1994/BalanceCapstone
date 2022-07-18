@@ -160,7 +160,7 @@ export const Timer = () => {
                 value={percentage}
                 text={minutes + ':' + seconds}
                 styles={buildStyles({
-                    pathColor: `#3e98c7`,
+                    pathColor: `#3e98c9`,
                     textColor: '#f88',
                     trailColor: '#fd9333',  
                 })}

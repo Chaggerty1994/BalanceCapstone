@@ -32,9 +32,11 @@ export const ListMenu = ({
 
     const deleteTask = (id) => {
         fetch(`http://localhost:8088/tasks/${id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
         })
-            .then(res => res.json())
             .then(fetchTasks)
 
     }
@@ -89,46 +91,47 @@ export const ListMenu = ({
                         (<IconButton className="taskbutton" id={`${task.id}`}
                             onClick={() => {
                                 const currentTask = task
-                                debugger
+
                                 setTaskEditing(currentTask.id)
                                 setEditingTask(currentTask.description)
+                                handleClose()
                             }}>
                             <EditIcon /> </IconButton>
                         )}
                 </MenuItem>
 
                 {task.team === false ? (
-                        <MenuItem>
-                        <IconButton className="taskbutton" 
-                        onClick={
-                            (evt) => {
-                                console.log(task.id)
-                                const copy = { ...task }
-                                copy.team = true
-                                changeTask(copy)
-                            }
-                        }>
-                        <GroupsIcon />
+                    <MenuItem>
+                        <IconButton className="taskbutton"
+                            onClick={
+                                (evt) => {
+                                    console.log(task.id)
+                                    const copy = { ...task }
+                                    copy.team = true
+                                    changeTask(copy)
+                                }
+                            }>
+                            <GroupsIcon />
                         </IconButton>
-                        </MenuItem>
+                    </MenuItem>
                 ) : (
                     <MenuItem>
-                    <IconButton className="taskbutton" 
-                    onClick={
-                        (evt) => {
-                            const copy = { ...task }
-                            copy.team = false
-                            changeTask(copy)
-                        }
-                    }>
-                    <PersonIcon />
-                    </IconButton>
+                        <IconButton className="taskbutton"
+                            onClick={
+                                (evt) => {
+                                    const copy = { ...task }
+                                    copy.team = false
+                                    changeTask(copy)
+                                }
+                            }>
+                            <PersonIcon />
+                        </IconButton>
                     </MenuItem>
                 )}
 
-            
 
-             
+
+
 
                 <MenuItem>
                     <IconButton className="taskbutton" onClick={(evt) => {
@@ -140,11 +143,14 @@ export const ListMenu = ({
                 </MenuItem>
 
                 <MenuItem>
-                    <IconButton className="taskbutton"  
-                    onClick={() => {
-                        const currentTask = task
-                        deleteTask(currentTask.id)
-                    }}><DeleteIcon /></IconButton>
+                    <IconButton className="taskbutton"
+                        onClick={() => {
+                            
+                            deleteTask(task.id)
+
+                        }}>
+                            <DeleteIcon />
+                        </IconButton>
                 </MenuItem>
 
 
