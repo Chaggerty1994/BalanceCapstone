@@ -2,26 +2,11 @@
 
 Balance is a time management application that helps its users organize their lives. Offering a user-friendly interface to keep track of personal and team oriented goals with customizable lists, and regiment their point of focus throughout the day with a pomodoro timer.
 
-     How it works
-----------------------------------------------------------------
+# Inspiration
 
-Users must register to create a profile using their name and email address. The email address is not used by the site for anything besides log in so you can make one up if youd like.
+My inspiration for this project was very personal. I was Diagnosed with ADHD last year and realized I had been living untreated for my whole life. I have been pretty high functioning as an adult but I want more consistancy, stability, predicatablilty, and punctuality. I want to be in charge of my focus not the other way around. I decided that a big part of my treatment was going to be cognitive behavioral therapy. The first thing I implemented was a to-do list and a pomodoro timer. They really helped me so much with my studying and project concentration. But I was frustrated by having to have both of them in seperate windows clicking back and forth all day, and I couldnt find one online that had both. So I built One! It was an awesome first full project to get to design and build, and it felt very important and personal. I still use my app daily!  
 
-Once you have logged in, you will be directed to the home page of the application where you will see a pomodoro timer with a dropdown menu to the right, and an empty to do list with a form for new to-do's to the left. 
-
-When adding a task to your to do list you may add the text, specify a time incriment you would like to focus on the task for, say if it is a personal or a group task, and submit it. 
-
-When the task posts to the list it will be purple if it is personal or light - blue if it is a group task. If you specify a task to be a group task it will appear in other users list. 
-
-You can edit the text of a posted task, trigger the associated timer settings, change the privacy from personal to group and vice versa, as well as delete the task.
-
-The pomodoro timer has A and B settings buttons for work and rest mode, a start and stop button and a dropdown menu to change the timer incriments. Any time you change the timer settings you must hit the A button to reset the timer.
-
-There is a My Account page where you can view and edit your personal account information.
-
-
-    The Development
---------------------------------------------
+# Development
 
 This project was created for my Front End Capstone project at Nashville Software School. 
 
@@ -32,8 +17,20 @@ My main Objectives in building Balance were
 
 I wanted the application to be visually appealing, minimalist, and useful.
 
-    How to install and run this application
--------------------------------------------
+<img width="1287" alt="Screen Shot 2022-08-02 at 10 38 35 AM" src="https://user-images.githubusercontent.com/96741689/182415374-2b9425a6-8e61-4ea0-b367-aeaddc902ec1.png">
+<img width="1301" alt="Screen Shot 2022-08-02 at 10 41 02 AM" src="https://user-images.githubusercontent.com/96741689/182415873-061acd86-ce77-4e5f-a46a-9c0be7eae563.png">
+
+<img width="1235" alt="Screen Shot 2022-08-02 at 10 41 41 AM" src="https://user-images.githubusercontent.com/96741689/182415914-c00409f9-05bb-44d6-8308-0a513f26909a.png">
+
+<img width="1224" alt="Screen Shot 2022-08-02 at 10 41 19 AM" src="https://user-images.githubusercontent.com/96741689/182416299-62bde1c7-2785-42d1-9615-e84d69eb4875.png">
+
+
+# Video walk through 
+
+https://drive.google.com/file/d/1fEbevXE7R4S1LMTLl9C0wpt-Q825kumE/view?usp=sharing
+
+
+# How to Install and run this application
 If you would like to use this application you can use the [live site](https://balance-capstone-tis8s.ondigitalocean.app/login)
 
 If you want to play around with the code, follow the instructions below
