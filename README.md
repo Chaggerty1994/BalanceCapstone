@@ -4,7 +4,7 @@ Balance is a time management application that helps its users organize their liv
 
 # Inspiration
 
-My inspiration for this project was very personal. I was Diagnosed with ADHD last year and realized I had been living untreated for my whole life. I have been pretty high functioning as an adult but I want more consistancy, stability, predicatablilty, and punctuality. I want to be in charge of my focus not the other way around. I decided that a big part of my treatment was going to be cognitive behavioral therapy. The first thing I implemented was a to-do list and a pomodoro timer. They really helped me so much with my studying and project concentration. But I was frustrated by having to have both of them in seperate windows clicking back and forth all day, and I couldnt find one online that had both. So I built One! It was an awesome first full project to get to design and build, and it felt very important and personal. I still use my app daily!  
+My inspiration for this project was simple. I use a to-do list and a pomodoro timer every day for my work. I was frustrated by having to have both of them in seperate windows clicking back and forth all day, and I couldnt find one online that had both. So I built One! It was an awesome first full project to get to design and build, and it felt very important and personal. I still use my app daily!  
 
 # Development
 
